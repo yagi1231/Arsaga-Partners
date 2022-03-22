@@ -9,6 +9,6 @@ bash-app:
 bash-web:
 		docker-compose exec web bash
 bash-db:
-		docker-compose exec db bash
+		docker-compose exec mysql bash
 migrate:
 		docker-compose exec app php app/artisan migrat		

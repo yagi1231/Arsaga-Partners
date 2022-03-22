@@ -26,5 +26,13 @@ services:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+  selenium:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - 4444:4444
+      - 5900:5900
+    depends_on:
+      - app
+    privileged: true
 volumes:
   mysql-data:

@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '77c9a25effa84525bdc88a39b04b328c8aaefc40',
+        'reference' => 'cdd46d9d4479e7239faec6182af828585914a819',
         'name' => '__root__',
         'dev' => true,
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '77c9a25effa84525bdc88a39b04b328c8aaefc40',
+            'reference' => 'cdd46d9d4479e7239faec6182af828585914a819',
             'dev_requirement' => false,
         ),
         'doctrine/inflector' => array(
@@ -26,6 +26,21 @@
             'install_path' => __DIR__ . '/../doctrine/inflector',
             'aliases' => array(),
             'reference' => '8b7ff3e4b7de6b2c84da85637b59fd2880ecaa89',
+            'dev_requirement' => true,
+        ),
+        'facebook/webdriver' => array(
+            'dev_requirement' => true,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
+        'graham-campbell/result-type' => array(
+            'pretty_version' => 'v1.0.4',
+            'version' => '1.0.4.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../graham-campbell/result-type',
+            'aliases' => array(),
+            'reference' => '0690bde05318336c7221785f2a932467f98b64ca',
             'dev_requirement' => true,
         ),
         'illuminate/console' => array(
@@ -64,6 +79,15 @@
             'reference' => 'c625fd884620c41ea6c5d84ccdb6a39fe555282d',
             'dev_requirement' => true,
         ),
+        'laravel/dusk' => array(
+            'pretty_version' => 'v6.22.1',
+            'version' => '6.22.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/dusk',
+            'aliases' => array(),
+            'reference' => 'bc9fd27ea167746ba0616a7661e6b5bd4a80c472',
+            'dev_requirement' => true,
+        ),
         'laravel/ui' => array(
             'pretty_version' => 'v1.3.0',
             'version' => '1.3.0.0',
@@ -80,6 +104,24 @@
             'install_path' => __DIR__ . '/../nesbot/carbon',
             'aliases' => array(),
             'reference' => '4a54375c21eea4811dbd1149fe6b246517554e78',
+            'dev_requirement' => true,
+        ),
+        'php-webdriver/webdriver' => array(
+            'pretty_version' => '1.12.0',
+            'version' => '1.12.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../php-webdriver/webdriver',
+            'aliases' => array(),
+            'reference' => '99d4856ed7dffcdf6a52eccd6551e83d8d557ceb',
+            'dev_requirement' => true,
+        ),
+        'phpoption/phpoption' => array(
+            'pretty_version' => '1.8.1',
+            'version' => '1.8.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpoption/phpoption',
+            'aliases' => array(),
+            'reference' => 'eab7a0df01fe2344d172bff4cd6dbd3f8b84ad15',
             'dev_requirement' => true,
         ),
         'psr/container' => array(
@@ -131,6 +173,15 @@
             'install_path' => __DIR__ . '/../symfony/finder',
             'aliases' => array(),
             'reference' => 'b17d76d7ed179f017aad646e858c90a2771af15d',
+            'dev_requirement' => true,
+        ),
+        'symfony/polyfill-ctype' => array(
+            'pretty_version' => 'v1.25.0',
+            'version' => '1.25.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/polyfill-ctype',
+            'aliases' => array(),
+            'reference' => '30885182c981ab175d4d034db0f6f469898070ab',
             'dev_requirement' => true,
         ),
         'symfony/polyfill-mbstring' => array(
@@ -201,6 +252,15 @@
             'provided' => array(
                 0 => '2.3',
             ),
+        ),
+        'vlucas/phpdotenv' => array(
+            'pretty_version' => 'v5.4.1',
+            'version' => '5.4.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../vlucas/phpdotenv',
+            'aliases' => array(),
+            'reference' => '264dce589e7ce37a7ba99cb901eed8249fbec92f',
+            'dev_requirement' => true,
         ),
     ),
 );

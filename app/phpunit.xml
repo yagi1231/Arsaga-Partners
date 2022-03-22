@@ -26,7 +26,6 @@
         <extension class="Tests\Bootstrap"/>
     </extensions>
     <php>
-        <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
         <server name="MAIL_DRIVER" value="array"/>
@@ -37,5 +36,10 @@
         <server name="APP_PACKAGES_CACHE" value="bootstrap/cache/packages.phpunit.php"/>
         <server name="APP_ROUTES_CACHE" value="bootstrap/cache/routes.phpunit.php"/>
         <server name="APP_EVENTS_CACHE" value="bootstrap/cache/events.phpunit.php"/>
+        <server name="DB_USERNAME" value="tatsuru"/>
+        <server name="DB_PASSWORD" value="password"/>
+        <server name="DB_CONNECTION" value="mysql"/>   
+        <server name="DB_DATABASE" value="port"/> 
+        <server name="APP_ENV" value="testing"/>
     </php>
 </phpunit>
