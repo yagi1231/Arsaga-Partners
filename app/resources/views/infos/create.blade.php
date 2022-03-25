@@ -32,10 +32,6 @@
      <th>備考</th>
      <td><input type="text" class="form-control width" name="remarks" placeholder="(例)新住所でマップでは出てこないので" value="{{ old('remarks')}}" ></td>
    </tr>
-   <tr>
-     <th>画像</th>
-     <td></td>
-   </tr>
  </table>
  <button type="submit" class="mt-5 mb-5 btn btn-outline-primary btn-completion">情報を登録する</button>
 </form>

@@ -16,7 +16,6 @@ class CreateInfosTable extends Migration
         Schema::create('infos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('address');
-            $table->string('image')->nullable();
             $table->string('name');
             $table->string('remarks')->nullable();
             $table->string('telnum');
