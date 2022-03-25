@@ -15,18 +15,18 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('address')->nullable();
+            $table->string('address');
             $table->string('image')->nullable();
-            $table->string('name')->nullable();
+            $table->string('name');
             $table->string('remarks')->nullable();
-            $table->string('telnum')->nullable();
-            $table->string('backtime')->nullable();
-            $table->string('time')->nullable();
-            $table->string('category')->nullable();
-            $table->string('categoryname')->nullable();
+            $table->string('telnum');
+            $table->string('backtime');
+            $table->string('time');
+            $table->string('category');
+            $table->string('categoryname');
             $table->string('delivery')->nullable();
-            $table->string('order')->nullable();
-            $table->string('sumprice')->nullable();
+            $table->string('order');
+            $table->string('sumprice');
             $table->string('price')->nullable();
             $table->string('task')->nullable();
             $table->integer('status')->default('1');
