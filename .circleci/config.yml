@@ -1,0 +1,61 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.2-node-browsers
+        environment:
+          - APP_DEBUG: true
+          - APP_ENV: testing
+          - DB_CONNECTION: mysql
+          - DB_DATABASE: port
+          - DB_USERNAME: root
+ 
+      - image: circleci/mysql:5.7-ram
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: true
+          - MYSQL_DATABASE: port
+ 
+    steps:
+      - checkout
+ 
+      - run: sudo apt update
+      - run: sudo docker-php-ext-install pdo_mysql
+ 
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+ 
+      - run: composer install -n --prefer-dist
+ 
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+ 
+      - run: echo "APP_KEY=" > .env
+      - run: php artisan key:generate
+      - run: php artisan migrate
+ 
+      - run: ./vendor/bin/phpunit
+ 
+  # deploy:
+  #   machine:
+  #     image: circleci/classic:edge
+  #   steps:
+  #     - add_ssh_keys:
+  #         fingerprints:
+  #           - "84:○:○:○:○:○:○:○:○:○:○:○:○:○:○:bf"
+  #     - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master'
+ 
+# workflows:
+#   version: 2
+#   build_and_deploy:
+#     jobs:
+#       - build
+#       - deploy:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#               only: master
