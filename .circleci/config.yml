@@ -3,13 +3,13 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.2-node-browsers
-      working_directory: ~/app
         environment:
           - APP_DEBUG: true
           - APP_ENV: testing
           - DB_CONNECTION: mysql
           - DB_DATABASE: port
           - DB_USERNAME: root
+        working_directory: ~/app
  
       - image: circleci/mysql:5.7-ram
         environment:
