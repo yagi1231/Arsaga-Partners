@@ -26,6 +26,7 @@ jobs:
             - v1-dependencies-{{ checksum "composer.json" }}
             - v1-dependencies-
  
+      - run: composer update
       - run: composer install -n --prefer-dist
  
       - save_cache:
