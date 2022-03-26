@@ -36,8 +36,7 @@ jobs:
             - ./vendor
  
       - run: echo "APP_KEY=" > .env.testing
-      - run: ls
-      - run: cd app && php artisan key:generate
+      - run: make bash-app && cd app && php artisan key:generate
       # - run: php artisan key:generate
       # - run: php artisan migrate
  
