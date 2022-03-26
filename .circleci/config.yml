@@ -37,10 +37,8 @@ jobs:
  
       - run: echo "APP_KEY=" > .env.testing
       - run: ls
-      - run: cd p/app
-      - run: ls 
-      - run: php artisan key:generate
-      - run: php artisan migrate
+      - run: cd app && php artisan key:generate
+      - run: cd app && php artisan migrate
  
       - run: ./vendor/bin/phpunit
  
