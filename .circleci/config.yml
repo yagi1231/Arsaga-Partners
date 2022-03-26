@@ -10,6 +10,8 @@ jobs:
           - DB_DATABASE: port
           - DB_USERNAME: root
         working_directory: ~/app
+          - checkout:
+            path: ~/app
  
       - image: circleci/mysql:5.7-ram
         environment:
