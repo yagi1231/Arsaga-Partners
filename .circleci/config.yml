@@ -18,7 +18,7 @@ jobs:
  
     steps:
       - checkout
-          path: ~/p/app
+      - path: ~/p/app
  
       - run: sudo apt update
       - run: sudo docker-php-ext-install pdo_mysql
