@@ -35,10 +35,9 @@ jobs:
           paths:
             - ./vendor
  
-      - run: echo "APP_KEY=" > .env
+      - run: echo "APP_KEY=" > .env.testing
       - run: ls
-      - run: pws
-      - run: $USER_NAME@$HOST_NAME cd app
+      - run: cd /app
       - run: ls 
       - run: php artisan key:generate
       - run: php artisan migrate
