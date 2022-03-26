@@ -19,13 +19,13 @@ class InfoTableSeeder extends Seeder
             'remarks' => Str::random(10),
         ]);
 
-        // 静的
         DB::table('infos')->insert([
             'name' => 'test',
             'address' => '埼玉',
             'telnum' => '08087654321',
             'remarks' => 'なし',
         ]);
+        
         DB::table('infos')->insert([
             'name' => 'test2',
             'address' => '東京',

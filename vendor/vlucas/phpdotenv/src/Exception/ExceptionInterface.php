@@ -1,12 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Dotenv\Exception;
 
-use Throwable;
-
-interface ExceptionInterface extends Throwable
+/**
+ * This is the exception interface.
+ */
+interface ExceptionInterface
 {
     //
 }

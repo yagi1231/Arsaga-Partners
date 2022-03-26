@@ -1,12 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Dotenv\Exception;
 
 use InvalidArgumentException;
 
-final class InvalidPathException extends InvalidArgumentException implements ExceptionInterface
+/**
+ * This is the invalid path exception class.
+ */
+class InvalidPathException extends InvalidArgumentException implements ExceptionInterface
 {
     //
 }
