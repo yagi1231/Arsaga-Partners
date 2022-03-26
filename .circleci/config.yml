@@ -34,10 +34,7 @@ jobs:
           paths:
             - ./vendor
  
-      - run: echo "APP_KEY=" > .env.testing
-      - run: ls
-      - run:  ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && php artisan key:generate'
-      - run:  ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && php artisan migrate'
+
  
       - run: ./vendor/bin/phpunit
  
