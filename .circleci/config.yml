@@ -36,9 +36,8 @@ jobs:
             - ./vendor
  
       - run: echo "APP_KEY=" > .env.testing
-      - run: make bash-app && cd app && php artisan key:generate
-      - run: docker compose exec app php artisan key:generate
-      - run: docker compose exec app php artisan migrate
+      - run: cd app && php artisan key:generate
+      - run: cd app && php artisan migrate
  
       - run: ./vendor/bin/phpunit
  
