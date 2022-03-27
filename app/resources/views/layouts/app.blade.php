@@ -33,11 +33,19 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
           integrity="sha512-aEe/ZxePawj0+G2R+AaIxgrQuKT68I28qh+wgLrcAJOz3rxCP+TwrK5SPN+E5I+1IQjNtcfvb96HDagwrKRdBw=="
           crossorigin="anonymous"/>
+    @if(config('app.env') === 'production')
+    <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/table.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/receipt.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/weather.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/responsive.css') }}">
+    @else
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/receipt.css') }}">
     <link rel="stylesheet" href="{{ asset('css/weather.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+    @endif
     @stack('third_party_stylesheets')
     @stack('css')
     @stack('page_css')
