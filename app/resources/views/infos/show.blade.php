@@ -22,10 +22,6 @@
       <th>備考</th>
       <td><input type="text" class="form-control width" name="remarks" value="{{$info['remarks']}}" style=" border:solid 0px; background-color:white;" readonly ></td>
     </tr>
-    <tr>
-      <th>画像</th>
-      <td></td>
-    </tr>
   </table>
   <button type="submit" class="mt-5 mb-5 btn btn-outline-primary">新規登録画面へ</button>
 </form>
