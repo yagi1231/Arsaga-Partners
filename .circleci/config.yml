@@ -39,9 +39,9 @@ jobs:
       - run: cd app && composer update
       - run: cd app && composer install
       - run: cd app && php artisan key:generate
-      - run: cd app && php artisan migrate
+      - run: cd app && docker-compose exec app php artisan migrate
  
-      - run: ./vendor/bin/phpunit
+      - run: cd && ./vendor/bin/phpunit
  
   # deploy:
   #   machine:
