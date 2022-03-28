@@ -18,10 +18,10 @@ services:
   mysql:
     image: mysql:5.7
     environment:
-      MYSQL_DATABASE: port
-      MYSQL_USER: tatsuru
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: A1997T12
+      MYSQL_ROOT_PASSWORD: A1997T12
     ports:
       - "3306:3306"
     volumes:
