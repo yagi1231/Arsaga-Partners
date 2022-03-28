@@ -36,6 +36,7 @@ jobs:
             - ./vendor
  
       - run: echo "APP_KEY=" > .env.testing
+      - run: cd app && composer update
       - run: cd app && composer install
       - run: cd app && php artisan key:generate
       - run: cd app && php artisan migrate
