@@ -10,7 +10,9 @@ jobs:
           - DB_DATABASE: port
           - DB_USERNAME: root
           - DB_PASSWORD: password
-        working_directory: ~/p/app
+      - image: circleci/python:3.6.5 # (1)
+          - steps:
+             - setup_remote_docker 
  
       - image: circleci/mysql:5.7-ram
         environment:
