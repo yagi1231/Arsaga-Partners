@@ -11,8 +11,8 @@ jobs:
           - DB_USERNAME: root
           - DB_PASSWORD: password
       - image: circleci/python:3.6.5 # (1)
-          - steps:
-             - setup_remote_docker 
+      - steps:
+      - setup_remote_docker 
  
       - image: circleci/mysql:5.7-ram
         environment:
