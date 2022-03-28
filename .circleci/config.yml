@@ -10,9 +10,7 @@ jobs:
           - DB_DATABASE: port
           - DB_USERNAME: root
           - DB_PASSWORD: password
-      - image: circleci/python:3.6.5 # (1)
-      - steps:
-      - setup_remote_docker 
+        working_directory: ~/p/app
  
       - image: circleci/mysql:5.7-ram
         environment:
@@ -41,7 +39,6 @@ jobs:
  
       - run: echo "APP_KEY=" > .env.testing
       - run: cd app && php artisan key:generate
-      - run: cd app && php artisan migrate
  
       - run: cd app && ./vendor/bin/phpunit
  
