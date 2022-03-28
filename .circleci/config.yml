@@ -36,8 +36,8 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:WUeTH94/tW7GJArEKScr0WPT8Wd4owi3KyQwstNi/ok"
-      - run: ssh -i "larabel-sample.pem" ec2-user@ec2-35-78-16-196.ap-northeast-1.compute.amazonaws.com && cd /var/www/app/ && git pull origin master
+            - "SHA256:5cznLZR0HVdCKPPnqoCcF7Z27M8Zao/WpbtBJQWLdjA"
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master'
  
 workflows:
   version: 2
