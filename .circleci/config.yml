@@ -34,10 +34,9 @@ jobs:
     machine:
         image: circleci/classic:edge
     steps:
-        - checkout
-        # CircleCI に登録した秘密鍵を呼び出す
         - add_ssh_keys:
-        # CircleCI に登録した環境変数を使って SSH
+            fingerprints:
+              - "e0:d1:48:67:e9:67:0f:b2:15:8b:77:66:23:b6:4b:5e"
         - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app && git pull origin master'
  
 workflows:
