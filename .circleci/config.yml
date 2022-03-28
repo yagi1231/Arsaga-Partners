@@ -9,7 +9,7 @@ jobs:
           - DB_CONNECTION: mysql
           - DB_DATABASE: port
           - DB_USERNAME: root
-        working_directory: p/app
+        working_directory: ~/app
  
       - image: circleci/mysql:5.7-ram
         environment:
@@ -27,8 +27,8 @@ jobs:
             - v1-dependencies-{{ checksum "composer.json" }}
             - v1-dependencies-
  
-      - run: composer update
-      - run: composer install -n --prefer-dist
+      - run: cd app && composer update
+      - run: cd app && composer install -n --prefer-dist
  
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
@@ -36,12 +36,10 @@ jobs:
             - ./vendor
  
       - run: echo "APP_KEY=" > .env.testing
-      - run: cd app && composer update
-      - run: cd app && composer install
       - run: cd app && php artisan key:generate
-      - run: cd app && docker-compose exec app php artisan migrate
+      - run: php artisan migrate
  
-      - run: cd && ./vendor/bin/phpunit
+      - run: cd app && ./vendor/bin/phpunit
  
   # deploy:
   #   machine:
