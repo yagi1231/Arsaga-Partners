@@ -9,6 +9,7 @@ jobs:
           - DB_CONNECTION: mysql
           - DB_DATABASE: port
           - DB_USERNAME: root
+          - DB_PASSWORD: password
         working_directory: ~/p/app
  
       - image: circleci/mysql:5.7-ram
@@ -18,7 +19,7 @@ jobs:
  
     steps:
       - checkout
- 
+      - run: ls && swd
       - run: sudo apt update
       - run: sudo docker-php-ext-install pdo_mysql
  
@@ -37,7 +38,7 @@ jobs:
  
       - run: echo "APP_KEY=" > .env.testing
       - run: cd app && php artisan key:generate
-      - run: php artisan migrate
+      - run: cd app && php artisan migrate
  
       - run: cd app && ./vendor/bin/phpunit
  
