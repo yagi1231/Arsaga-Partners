@@ -6,7 +6,7 @@ jobs:
       - image: circleci/mariadb:10.4
     environment:
       - DB_CONNECTION: circle_testing
-    working_directory: ~/p
+    working_directory: ~/p/app
     steps:
       - checkout
       - run:
@@ -28,7 +28,7 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
           name: Run PHPUnit
-          command: vendor/bin/phpunit
+          command: cd && vendor/bin/phpunit
  
   # deploy:
   #   machine:
