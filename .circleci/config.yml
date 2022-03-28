@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.2-node-browsers
         environment:
           - APP_DEBUG: true
-          - APP_ENV: testing
+          - APP_ENV: local
           - DB_CONNECTION: mysql
           - DB_DATABASE: test_db
           - DB_USERNAME: root
@@ -15,7 +15,7 @@ jobs:
       - image: circleci/mysql:5.7-ram
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
-          - MYSQL_DATABASE: port
+          - MYSQL_DATABASE: test_db
  
     steps:
       - checkout
