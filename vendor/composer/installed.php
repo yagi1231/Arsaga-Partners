@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1b62fa0c0f68b7ea906619e73f21521587ccdaa7',
+        'reference' => '3e1efa9cedf7fd4ef50fbfab3517a6364dc5162e',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1b62fa0c0f68b7ea906619e73f21521587ccdaa7',
+            'reference' => '3e1efa9cedf7fd4ef50fbfab3517a6364dc5162e',
             'dev_requirement' => false,
         ),
         'doctrine/inflector' => array(
@@ -125,12 +125,12 @@
             'dev_requirement' => true,
         ),
         'psr/container' => array(
-            'pretty_version' => '1.1.2',
-            'version' => '1.1.2.0',
+            'pretty_version' => '1.1.1',
+            'version' => '1.1.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../psr/container',
             'aliases' => array(),
-            'reference' => '513e0666f7216c7459170d56df27dfcefe1689ea',
+            'reference' => '8622567409010282b7aeebe4bb841fe98b58dcaf',
             'dev_requirement' => true,
         ),
         'psr/log-implementation' => array(
