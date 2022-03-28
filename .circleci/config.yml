@@ -7,9 +7,9 @@ jobs:
           - APP_DEBUG: true
           - APP_ENV: testing
           - DB_CONNECTION: mysql
-          - DB_DATABASE: port
+          - DB_DATABASE: test_db
           - DB_USERNAME: root
-          - DB_PASSWORD: password
+          - DB_PASSWORD: A1997T12
         working_directory: ~/p/app
  
       - image: circleci/mysql:5.7-ram
@@ -37,7 +37,7 @@ jobs:
  
       - run: echo "APP_KEY=" > .env.testing
       - run: cd app && php artisan key:generate
-
+      - run: cd app && php artisan migrate
  
       - run: cd app && ./vendor/bin/phpunit
  
