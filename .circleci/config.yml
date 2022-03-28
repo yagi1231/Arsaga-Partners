@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.2-node-browsers
         environment:
           - APP_DEBUG: true
-          - APP_ENV: local
+          - APP_ENV: testing
           - DB_CONNECTION: mysql
           - DB_DATABASE: test_db
           - DB_USERNAME: root
