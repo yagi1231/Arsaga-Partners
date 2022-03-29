@@ -28,6 +28,9 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
           name: Run PHPUnit
+          command: cd ~/.ssh && ls
+      - run:
+          name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
  
   deploy:
@@ -38,7 +41,7 @@ jobs:
            - run : cd ~/.ssh && ls
            - add_ssh_keys:
            - run : cd ~/.ssh && ls
-           - run: ssh ${USER_NAME}@${HOST_NAME} 'cd ~/var/www/app && git pull origin master'
+           - run: cd ~/.ssh && ssh github 'cd ~/var/www/app && git pull origin master'
 
  
 workflows:
