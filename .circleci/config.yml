@@ -36,7 +36,7 @@ jobs:
        steps:
            - checkout
            - add_ssh_keys:
-           - run: cd ~/.ssh && ssh -i "larabel-sample.pem" ec2-user@ec2-35-78-16-196.ap-northeast-1.compute.amazonaws.com 'cd ~/var/www/app && git pull origin master'
+           - run: ssh -i "larabel-sample.pem" ec2-user@ec2-35-78-16-196.ap-northeast-1.compute.amazonaws.com 'cd ~/var/www/app && git pull origin master'
 
  
 workflows:
