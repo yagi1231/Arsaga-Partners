@@ -31,12 +31,14 @@ jobs:
           command: cd app && vendor/bin/phpunit
  
   deploy:
-       machine:
-           image: circleci/classic:edge
-       steps:
-           - checkout
-           - add_ssh_keys:
-           - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app && git pull origin master'
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "fa:3a:f7:bd:a7:71:2e:fd:04:99:5d:19:6c:d5:90:a7"
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master'
+
  
 workflows:
   version: 2
