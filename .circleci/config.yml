@@ -34,8 +34,9 @@ jobs:
        machine:
            image: circleci/classic:201808-01
        steps:
-           - checkout
-           - add_ssh_keys:
+         - add_ssh_keys:
+             fingerprints:
+               - "7f:b9:a6:59:6b:31:3f:c9:b9:df:ef:ca:e8:d5:5e:4b"
            - run: cd ~/.ssh && ssh -i "larabel-sample.pem" ec2-user@ec2-35-78-16-196.ap-northeast-1.compute.amazonaws.com 'cd ~/var/www/app && git pull origin master'
 
  
