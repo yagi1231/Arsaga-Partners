@@ -33,7 +33,7 @@ jobs:
   deploy:
        machine:
            image: circleci/classic:201808-01
-       steps
+       steps:
            - checkout
            - add_ssh_keys:
            - run: ssh ${USER_NAME}@${HOST_NAME} 'cd ~/var/www/app && git pull origin master'
