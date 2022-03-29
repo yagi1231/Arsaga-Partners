@@ -36,7 +36,7 @@ jobs:
        steps:
            - checkout
            - add_ssh_keys:
-           - run: ssh ${USER_NAME}@${HOST_NAME} 'cd ~/var/www/app && git pull origin master'
+           - run: ssh ${USER_NAME}@35-78-16-196 'cd ~/var/www/app && git pull origin master'
 
  
 workflows:
@@ -50,4 +50,3 @@ workflows:
           filters:
             branches:
               only: master
-              
