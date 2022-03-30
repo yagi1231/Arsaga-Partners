@@ -38,6 +38,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "${KEY_FINGERPRINT}"  
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git branch '
       - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git stash &&  git merge --allow-unrelated-histories origin/master && git stash pop ' 
       - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ &&  git pull origin master '
 
