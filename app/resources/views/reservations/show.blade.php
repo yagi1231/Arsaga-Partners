@@ -31,7 +31,7 @@
   </tr>
  
   <tr>
-    <th>時間</th>
+    <th>時間(クリックで電話)</th>
     <td>{{$reservation['time']}}<br><br>{{$reservation['backtime']}}</td>
   </tr>
 
