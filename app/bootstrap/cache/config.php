@@ -4,13 +4,13 @@
     'name' => 'Kouch',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost',
+    'url' => 'http://localhost/8000',
     'asset_url' => NULL,
     'timezone' => 'Asia/Tokyo',
     'locale' => 'ja',
     'fallback_locale' => 'en',
     'faker_locale' => 'ja_JP',
-    'key' => 'base64:4y4Vbc02SjLNmSkcTdxKc98jvEs+3IE+moyIufzMTIQ=',
+    'key' => 'base64:G8bINrpWacOybbjDbkr04pgll6Ktvwy9uEpcDPcaz5U=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -356,7 +356,7 @@
       array (
         'driver' => 'local',
         'root' => '/var/www/html/app/app/storage/app/public',
-        'url' => 'http://localhost/storage',
+        'url' => 'http://localhost/8000/storage',
         'visibility' => 'public',
       ),
       's3' => 

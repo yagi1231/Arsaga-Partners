@@ -28,8 +28,7 @@ class InfoTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                    ->visit('/infos/create')
-                    ->acceptDialog()// 一覧画面に遷移 // 一覧画面で新規作成リンクをクリック
+                    ->visit('/infos/create')// 一覧画面に遷移 // 一覧画面で新規作成リンクをクリック
                     ->type('input[name="name"]', 'test_name') // タイトルを入力する
                     ->type('input[name="address"]', 'aaa@gamil.com') 
                     ->type('input[name="telnum"]', '08012345786')

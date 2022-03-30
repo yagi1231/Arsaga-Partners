@@ -5,9 +5,12 @@ RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/
 RUN apt-get update \
 && apt-get install -y \
 git \
+zlib1g-dev \
+libzip-dev \
 zip \
 unzip \
-vim
+vim \
+&& docker-php-ext-install zip 
 
 RUN apt-get update \
     && apt-get install -y libpq-dev \
