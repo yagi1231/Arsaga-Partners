@@ -16,7 +16,7 @@
   </tr>
 
    <tr>
-    <th>電話番号（クリックしたら電話がかかる）</th>
+    <th>電話番号(クリックで電話)</th>
     <td><a href="tel:{{$reservation['telnum']}}" class="telcolor">{{$reservation['telnum']}}</a></td>
   </tr>
 
@@ -31,7 +31,7 @@
   </tr>
  
   <tr>
-    <th>時間(クリックで電話)</th>
+    <th>時間</th>
     <td>{{$reservation['time']}}<br><br>{{$reservation['backtime']}}</td>
   </tr>
 
