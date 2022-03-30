@@ -16,7 +16,7 @@
   </tr>
 
    <tr>
-    <th>電話番号(クリックで電話)</th>
+    <th>電話番号(クリックで電話可能)</th>
     <td><a href="tel:{{$reservation['telnum']}}" class="telcolor">{{$reservation['telnum']}}</a></td>
   </tr>
 
