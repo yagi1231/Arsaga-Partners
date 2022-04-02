@@ -12,7 +12,7 @@
     <input type="search" class="reservation_form" name="search"  placeholder="キーワードを入力" >
     <input type="date" class="reservation_form" name="date-search" placeholder="キーワードを入力">
     </div>
-    <input type="submit" value="検索" class="btn btn-info">
+    <input type="submit" value="検索" class="btn btn-info" dusk="search">
   </form>
     <table>
       <thead>

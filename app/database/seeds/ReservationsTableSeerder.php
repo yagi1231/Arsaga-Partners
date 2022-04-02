@@ -14,10 +14,10 @@ class ReservationsTableSeerder extends Seeder
     {
         DB::table('reservations')->insert([
             'name' => 'テスト',
-            'address' =>'aaa@gmail.com',
+            'address' =>'埼玉',
             'telnum' => '07087976545',
             'remarks' => '特になし',
-            'time' => '2022/03/21',
+            'time' => '2022-03-21',
             'backtime' => '13:00-13:30', 
             'category' =>'KOUCH',
             'categoryname' => '企業', 
@@ -27,14 +27,15 @@ class ReservationsTableSeerder extends Seeder
             'sumprice' => '2040',
             'status' => 1
         ]);
+
         DB::table('reservations')->insert([
             'name' => 'テスト2',
-            'address' =>'bbb@gmail.com',
+            'address' =>'東京',
             'telnum' => '09034529876',
             'remarks' => '特になし',
-            'time' => '2022/03/22',
+            'time' => '2022-07-22',
             'backtime' => '13:00', 
-            'category' =>'大戸屋',
+            'category' =>'KOUCH',
             'categoryname' => '企業', 
             'order' => 'ステーキ　生姜焼き', 
             'image' => '',
@@ -42,12 +43,77 @@ class ReservationsTableSeerder extends Seeder
             'sumprice' => '1360',
             'status' => 1
         ]);
+
         DB::table('reservations')->insert([
             'name' => 'テスト3',
-            'address' =>'ccc@gmail.com',
+            'address' =>'神奈川',
             'telnum' => '08078987653',
             'remarks' => 'あり',
-            'time' => '2022/03/23',
+            'time' => '2022-06-23',
+            'backtime' => '13:30', 
+            'category' =>'コラボ',
+            'categoryname' => '民家', 
+            'order' => 'ステーキ', 
+            'image' => '',
+            'price' => '680+',
+            'sumprice' => '680',
+            'status' => 1
+        ]);
+
+        DB::table('reservations')->insert([
+            'name' => 'テスト4',
+            'address' =>'千葉',
+            'telnum' => '07087976545',
+            'remarks' => '特になし',
+            'time' => '2022-05-21',
+            'backtime' => '13:00-13:30', 
+            'category' =>'KOUCH',
+            'categoryname' => '企業', 
+            'order' => 'ステーキ　生姜焼き 肉じゃが', 
+            'image' => '',
+            'price' => '680+680+680+',
+            'sumprice' => '2040',
+            'status' => 1
+        ]);
+
+        DB::table('reservations')->insert([
+            'name' => 'テスト5',
+            'address' =>'茨城',
+            'telnum' => '09034529876',
+            'remarks' => '特になし',
+            'time' => '2022-03-21',
+            'backtime' => '13:00', 
+            'category' =>'KOUCH',
+            'categoryname' => '企業', 
+            'order' => 'ステーキ　生姜焼き', 
+            'image' => '',
+            'price' => '680+680',
+            'sumprice' => '1360',
+            'status' => 1
+        ]);
+        
+        DB::table('reservations')->insert([
+            'name' => 'テスト6',
+            'address' =>'群馬',
+            'telnum' => '08078987653',
+            'remarks' => 'あり',
+            'time' => '2022-04-23',
+            'backtime' => '13:30', 
+            'category' =>'コラボ',
+            'categoryname' => '民家', 
+            'order' => 'ステーキ', 
+            'image' => '',
+            'price' => '680+',
+            'sumprice' => '680',
+            'status' => 1
+        ]);
+
+        DB::table('reservations')->insert([
+            'name' => 'テスト7',
+            'address' =>'群馬',
+            'telnum' => '08078987653',
+            'remarks' => 'あり',
+            'time' => '2022-08-23',
             'backtime' => '13:30', 
             'category' =>'コラボ',
             'categoryname' => '民家', 

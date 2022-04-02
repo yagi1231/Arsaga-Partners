@@ -10,7 +10,7 @@
     <div class="form-group">
     <input type="date" class="sale_form" name="search"  value="<?php echo date('Y-m-d');?>" placeholder="キーワードを入力" aria-label="検索...">
     </div>
-    <input type="submit" value="検索" class="btn btn-info sale">
+    <input type="submit" value="検索" class="btn btn-info sale" dusk="search">
   </form>
   <div class="row">
     <div class="header-title">日別平均</div>

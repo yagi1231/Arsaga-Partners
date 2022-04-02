@@ -81,9 +81,9 @@
   <ul>
   </ul>
 </div>
-<a href="/reservations/edit/{{$reservation['id']}}" type="submit" class="mt-5  btn btn-outline-primary">情報を編集する</a>
+<a href="/reservations/edit/{{$reservation['id']}}" type="submit" class="mt-5  btn btn-outline-primary" dusk="edit-btn">情報を編集する</a>
 <form action="/reservations/delete/{{$reservation->id}}" method="POST">
   {{ csrf_field() }}
-  <input type="submit" value="削除" class="mt-5 mb-5 btn btn-outline-primary btn-dell">
+  <input type="submit" value="削除" class="mt-5 mb-5 btn btn-outline-primary btn-dell" dusk="delete-btn">
 </form>
 @endsection
