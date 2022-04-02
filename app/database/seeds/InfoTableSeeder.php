@@ -32,5 +32,26 @@ class InfoTableSeeder extends Seeder
             'telnum' => '09098767897',
             'remarks' => 'あり',
         ]);
+
+        DB::table('infos')->insert([
+            'name' => 'test3',
+            'address' => '東京',
+            'telnum' => '09098767897',
+            'remarks' => 'あり',
+        ]);
+        
+        DB::table('infos')->insert([
+            'name' => 'test5',
+            'address' => '東京',
+            'telnum' => '09098761238',
+            'remarks' => 'あり',
+        ]);
+
+        DB::table('infos')->insert([
+            'name' => 'test6',
+            'address' => '東京',
+            'telnum' => '09098761238',
+            'remarks' => 'あり',
+        ]);
     }
 }

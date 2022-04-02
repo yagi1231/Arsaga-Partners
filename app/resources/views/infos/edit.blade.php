@@ -33,6 +33,6 @@
       <td><input type="text" class="form-control width" name="remarks" placeholder="(例)新住所でマップでは出てこないので" value="{{$info['remarks']}}" ></td>
     </tr>
   </table>
-  <button type="submit" class="mt-5 mb-5 btn btn-outline-primary btn-completion">情報を登録する</button>
+  <button type="submit" class="mt-5 mb-5 btn btn-outline-primary btn-completion" dusk="edit-btn">情報を登録する</button>
 </form>
 @endsection

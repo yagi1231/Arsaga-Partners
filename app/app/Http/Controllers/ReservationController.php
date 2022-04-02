@@ -97,7 +97,7 @@ class ReservationController extends Controller
              'status' => 1
         ]);
         
-        return redirect('/reservations/index')->with('success', '作成ができました');
+        return redirect('/reservations/index')->with('success', '作成完了');
     }
 
     public function show($id){
@@ -162,7 +162,7 @@ class ReservationController extends Controller
             'sumprice' => $inputs['sumprice'],
             'status' => 1
        ]);
-        return redirect('/reservations/index')->with('success', '更新ができました');
+        return redirect('/reservations/index')->with('success', '更新完了');
     }
 
     public function delete(Request $request, $id)
@@ -173,7 +173,7 @@ class ReservationController extends Controller
         // ↓は物理削除
         // Info::where('id', $id)->delete();
 
-        return redirect('/reservations/index')->with('success', 'メモの削除が完了しました！');
+        return redirect('/reservations/index')->with('success', '削除完了');
     }
 
     public function sum_sale()

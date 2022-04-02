@@ -23,9 +23,9 @@
       <td><input type="text" class="form-control width" name="remarks" value="{{$info['remarks']}}" style=" border:solid 0px; background-color:white;" readonly ></td>
     </tr>
   </table>
-  <button type="submit" class="mt-5 mb-5 btn btn-outline-primary">新規登録画面へ</button>
+  <button type="submit" class="mt-5 mb-5 btn btn-outline-primary" dusk="new-btn">新規登録画面へ</button>
 </form>
-<a href="/infos/edit/{{$info['id']}}" type="submit" class="mt-5  btn btn-outline-primary">情報を編集する</a>
+<a href="/infos/edit/{{$info['id']}}" type="submit" class="mt-5  btn btn-outline-primary" dusk="edit-btn">情報を編集する</a>
 <form action="/infos/delete/{{$info->id}}" method="POST">
   {{ csrf_field() }}
   <input type="submit" value="削除" class="mt-5 mb-5 btn btn-outline-primary btn-dell">

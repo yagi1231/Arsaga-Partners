@@ -21,7 +21,6 @@ class LoginTest extends DuskTestCase
     {
        parent::setUp();
        // テストユーザ作成
-       Artisan::call('migrate:refresh');
     }
 
     public function testBasicExample()
@@ -50,7 +49,6 @@ class LoginTest extends DuskTestCase
                 ->acceptDialog()
                 ->assertSee('ログアウト')
                 ->clickLink('ログアウト')
-                ->acceptDialog() 
                 ->acceptDialog() ;
         });
     }
@@ -58,16 +56,16 @@ class LoginTest extends DuskTestCase
     public function test_新規登録()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/register') // 一覧画面に遷移 // 一覧画面で新規作成リンクをクリック
-                    ->type('input[name="name"]', 'test_name') // タイトルを入力する
+            $browser->visit('/register')
+                    ->type('input[name="name"]', 'test_name')
                     ->type('input[name="email"]', 'aaa@gamil.com') 
                     ->type('input[name="password"]', 'aaaaaaaa')
-                    ->type('input[name="password_confirmation"]', 'aaaaaaaa') // 著者を入力する
+                    ->type('input[name="password_confirmation"]', 'aaaaaaaa') 
                     ->press('同意する')
-                    ->acceptDialog() // 送信ボタンをクリック
-                    ->assertPathIs('/reservations/index') // 一覧画面に遷移を確認
+                    ->acceptDialog()
+                    ->assertPathIs('/reservations/index')
                     ->assertSee('予約一覧表')
-                    ->screenshot("logined"); // 「タイトルテスト」というテキストが含まれていること
+                    ->screenshot("logined");
         });
     }
 }

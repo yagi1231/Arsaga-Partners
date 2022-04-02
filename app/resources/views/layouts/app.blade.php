@@ -61,11 +61,6 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
-        
-        <div  id="now">
-            <div id="weather"> </div>
-        </div>
-        <table id="forecast"></table>
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">

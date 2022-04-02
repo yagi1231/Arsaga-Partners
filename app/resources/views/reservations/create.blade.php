@@ -173,6 +173,6 @@
       <td><input type="file" name="image" id="image" style="width:180px"></td>
     </tr>
   </table>
-    <button type="submit" class="mt-5 mb-5 btn btn-outline-primary btn-completion">情報を登録する</button>
+    <button type="submit" class="mt-5 mb-5 btn btn-outline-primary btn-completion" dusk="new-submit">情報を登録する</button>
 </form>
 @endsection

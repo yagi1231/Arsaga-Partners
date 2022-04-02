@@ -63,7 +63,7 @@ class InfoController extends Controller
         
         // リダイレクト処理
       
-        return redirect()->route('infos/show', ['id' => $infos]);
+        return redirect()->route('infos/show', ['id' => $infos])->with('success', '作成完了');
     }
 
     public function show($id){
@@ -108,7 +108,7 @@ class InfoController extends Controller
 
             'status' => 1
        ]);
-        return redirect('/infos/index')->with('success', '更新ができました');
+        return redirect('/infos/index')->with('success', '更新完了');
     }
 
     public function delete(Request $request, $id)
@@ -119,6 +119,6 @@ class InfoController extends Controller
         // ↓は物理削除
         // Info::where('id', $id)->delete();
 
-        return redirect('/infos/index')->with('success', 'メモの削除が完了しました！');
+        return redirect('/infos/index')->with('success', '削除完了');
     }
 }

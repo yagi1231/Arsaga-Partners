@@ -11,7 +11,7 @@
     <div class="form-group">
     <input type="search" class="info_form" name="search"  value="{{request('search')}}" placeholder="キーワードを入力" aria-label="検索...">
     </div>
-    <input type="submit" value="検索" class="btn btn-info">
+    <input type="submit" value="検索" class="btn btn-info" dusk="search">
   </form>
     <table>
     <thead>
@@ -31,7 +31,7 @@
         <td>
           <form method='POST' action="/infos/delete/{{$info['id']}}" id='delete-form'>
              @csrf
-            <button class='p-0 mr-2 btn-dell' value="削除" style='border:none;'><i id='delete-button' class="fas fa-trash"></i></button>
+            <button class='p-0 mr-2 btn-dell' value="削除" style='border:none;'><i id='delete-button' class="fas fa-trash" dusk="delete-btn"></i></button>
           </form>  
         </td>
       </tr>
