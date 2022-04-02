@@ -67,6 +67,7 @@ class ReservationTest extends DuskTestCase
     //                 ->type('input[name="remarks"]', 'なし')
     //                 ->press('@edit-create-btn')
     //                 ->acceptDialog()
+    //                 ->acceptDialog()
     //                 ->pause(2000)
     //                 ->assertSee('更新完了');
     //     });
@@ -80,6 +81,7 @@ class ReservationTest extends DuskTestCase
     //                 ->acceptDialog()
     //                 ->clicklink('テスト様')
     //                 ->press('@delete-btn')
+    //                 ->acceptDialog()
     //                 ->acceptDialog()
     //                 ->assertSee('削除完了')
     //                 ->pause(2000);
@@ -151,41 +153,43 @@ class ReservationTest extends DuskTestCase
     //     });
     // }
 
-    // public function test_ペーネーション5以下の場合()
-    // {
-    //     $this->browse(function (Browser $browser){
-    //         $browser->loginAs(User::find(1))
-    //                 ->visit('/reservations/index')
-    //                 ->acceptDialog()
-    //                 ->clicklink('テスト様')
-    //                 ->press('@delete-btn')
-    //                 ->acceptDialog()
-    //                 ->clicklink('テスト6様')
-    //                 ->press('@delete-btn')
-    //                 ->acceptDialog()
-    //                 ->assertSourceMissing('pagination.m-0');
-    //     });
-    // }
+    public function test_ペーネーション5以下の場合()
+    {
+        $this->browse(function (Browser $browser){
+            $browser->loginAs(User::find(1))
+                    ->visit('/reservations/index')
+                    ->acceptDialog()
+                    ->clicklink('テスト様')
+                    ->press('@delete-btn')
+                    ->acceptDialog()
+                    ->acceptDialog()
+                    ->clicklink('テスト6様')
+                    ->press('@delete-btn')
+                    ->acceptDialog()
+                    ->acceptDialog()
+                    ->assertSourceMissing('pagination.m-0');
+        });
+    }
 
-    // public function test_ハンバーガーメニュー ()
-    // {
-    //     $this->browse(function (Browser $browser){
-    //         $browser->loginAs(User::find(1))
-    //                 ->visit('/infos/index')
-    //                 ->clicklink('注文内容/TOP')
-    //                 ->acceptDialog()
-    //                 ->assertPathIs('/reservations/index')
-    //                 ->clicklink('お客様情報一覧')
-    //                 ->assertPathIs('/infos/index')
-    //                 ->clicklink('新規お客様情報')
-    //                 ->assertPathIs('/infos/create')
-    //                 ->clicklink('売上')
-    //                 ->assertPathIs('/reservations/sales/sum_sale')
-    //                 ->clicklink('ログアウト')
-    //                 ->acceptDialog()
-    //                 ->assertPathIs('/');
-    //     });
-    // }
+    public function test_ハンバーガーメニュー ()
+    {
+        $this->browse(function (Browser $browser){
+            $browser->loginAs(User::find(1))
+                    ->visit('/infos/index')
+                    ->clicklink('注文内容/TOP')
+                    ->acceptDialog()
+                    ->assertPathIs('/reservations/index')
+                    ->clicklink('お客様情報一覧')
+                    ->assertPathIs('/infos/index')
+                    ->clicklink('新規お客様情報')
+                    ->assertPathIs('/infos/create')
+                    ->clicklink('売上')
+                    ->assertPathIs('/reservations/sales/sum_sale')
+                    ->clicklink('ログアウト')
+                    ->acceptDialog()
+                    ->assertPathIs('/');
+        });
+    }
 
     // public function test_売上ページ変更確認()
     // {
@@ -206,53 +210,53 @@ class ReservationTest extends DuskTestCase
     //     });
     // }
 
-    public function test_売上ページ検索確認()
-    {
-        $this->browse(function (Browser $browser){
-            $browser->loginAs(User::find(1))
-                    ->visit('/reservations/sales/ave_sale')
-                    ->type('input[name="search"]', '03-21-2022')
-                    ->press('@search')
-                    ->assertSee('2022/03/21')
-                    ->assertSee('2件')
-                    ->assertSee('￥1,700')
+    // public function test_売上ページ検索確認()
+    // {
+    //     $this->browse(function (Browser $browser){
+    //         $browser->loginAs(User::find(1))
+    //                 ->visit('/reservations/sales/ave_sale')
+    //                 ->type('input[name="search"]', '03-21-2022')
+    //                 ->press('@search')
+    //                 ->assertSee('2022/03/21')
+    //                 ->assertSee('2件')
+    //                 ->assertSee('￥1,700')
                
-                    ->visit('/reservations/sales/month_sum_sale')
-                    ->press('@search')
-                    ->assertSee('2022/04')
-                    ->assertSee('1件')
-                    ->assertSee('￥680')
+    //                 ->visit('/reservations/sales/month_sum_sale')
+    //                 ->press('@search')
+    //                 ->assertSee('2022/04')
+    //                 ->assertSee('1件')
+    //                 ->assertSee('￥680')
 
 
-                    ->visit('/reservations/sales/month_ave_sale')
-                    ->press('@search')
-                    ->assertSee('2022/04')
-                    ->assertSee('1件')
-                    ->assertSee('￥680')
+    //                 ->visit('/reservations/sales/month_ave_sale')
+    //                 ->press('@search')
+    //                 ->assertSee('2022/04')
+    //                 ->assertSee('1件')
+    //                 ->assertSee('￥680')
 
-                    ->visit('/reservations/sales/sum_sale')
-                    ->type('input[name="search"]', '03-21-2022')
-                    ->assertSee('2022/03/21')
-                    ->assertSee('2件')
-                    ->assertSee('￥3,400');
-        });
-    }
+    //                 ->visit('/reservations/sales/sum_sale')
+    //                 ->type('input[name="search"]', '03-21-2022')
+    //                 ->assertSee('2022/03/21')
+    //                 ->assertSee('2件')
+    //                 ->assertSee('￥3,400');
+    //     });
+    // }
 
-    public function test_売上ページ_5つ以上でページネーション確認()
-    {
-        $this->browse(function (Browser $browser){
-            $browser->loginAs(User::find(1))
-                    ->visit('/reservations/sales/ave_sale')
-                    ->assertSourceHas('d-flex justify-content-center mt-5 mb-5')
+    // public function test_売上ページ_5つ以上でページネーション確認()
+    // {
+    //     $this->browse(function (Browser $browser){
+    //         $browser->loginAs(User::find(1))
+    //                 ->visit('/reservations/sales/ave_sale')
+    //                 ->assertSourceHas('d-flex justify-content-center mt-5 mb-5')
                
-                    ->visit('/reservations/sales/month_sum_sale')
-                    ->assertSourceHas('d-flex justify-content-center mt-5 mb-5')
+    //                 ->visit('/reservations/sales/month_sum_sale')
+    //                 ->assertSourceHas('d-flex justify-content-center mt-5 mb-5')
 
-                    ->visit('/reservations/sales/month_ave_sale')
-                    ->assertSourceHas('d-flex justify-content-center mt-5 mb-5')
+    //                 ->visit('/reservations/sales/month_ave_sale')
+    //                 ->assertSourceHas('d-flex justify-content-center mt-5 mb-5')
 
-                    ->visit('/reservations/sales/sum_sale')
-                    ->assertSourceHas('d-flex justify-content-center mt-5 mb-5');
-        });
-    }
+    //                 ->visit('/reservations/sales/sum_sale')
+    //                 ->assertSourceHas('d-flex justify-content-center mt-5 mb-5');
+    //     });
+    // }
 }
