@@ -8,33 +8,25 @@ jobs:
       - DB_CONNECTION: circle_testing
     working_directory: ~/p
     steps:
-      - checkout
-      - run:
-          name: Update apt-get
-          command: sudo apt-get update
-      - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
-      - run:
-          name: Install PHP libraries
-          command: cd app && composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-      - run:
-          name: Run PHPUnit
-          command: cd app && vendor/bin/phpunit
-    override:
-      - ./vendor/laravel/dusk/bin/chromedriver-linux:
-            background: true
-      - php artisan serve:
-            background: true
-      - cd app && php artisan dusk
+     - run: sudo apt-get install -y libsqlite3-dev
+     - run: cp .env.testing .env
+     - run: cd app && composer install -n --ignore-platform-reqs
+     - run: npm install
+     - run: npm run production
+     - run: cd app && vendor/bin/phpu 
+     - run:
+         name: Start Chrome Driver
+         command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
+         background: true
+
+     - run:
+         name: Run Laravel Server
+         command: cd app && php artisan serve
+         background: true
+
+     - run:
+         name: Run Laravel Dusk Tests
+         command: cd app && php artisan dusk
 
   deploy:
     machine:
