@@ -9,6 +9,7 @@ jobs:
     working_directory: ~/p
     steps:
       - checkout
+      - run: cd app && cp .env.example .env
       - run:
           name: Update apt-get
           command: sudo apt-get update
