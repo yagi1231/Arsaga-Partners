@@ -32,7 +32,7 @@ jobs:
           name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
       - run: cd app && cp .env.example .env
-      - run: docker-compose up -d --build
+      - run: docker-compose up -d --no-deps --build selenium
       - run:
           name: Run Laravel Dusk Tests
           command: cd app && php artisan dusk
