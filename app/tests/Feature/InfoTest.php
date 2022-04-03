@@ -42,7 +42,7 @@ class InfoTest extends TestCase
 
         $response->assertStatus(200);
 
-        $response = $this->get('/infos/4');//存在しないときの確認
+        $response = $this->get('/infos/7');//存在しないときの確認
 
         $response->assertStatus(404);
     }
@@ -64,7 +64,7 @@ class InfoTest extends TestCase
  
         $response = $this->post('infos/store', $data);
 
-        $response->assertStatus(302)->assertRedirect('infos/4');
+        $response->assertStatus(302)->assertRedirect('infos/7');
         
         $this->assertDatabaseHas('infos', ['name' => 'testname']);
     }

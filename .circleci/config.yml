@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mariadb:10.4
     environment:
-      - DB_CONNECTION: circle_testing
+      - DB_CONNECTION: circle_test
     working_directory: ~/p
     steps:
       - checkout

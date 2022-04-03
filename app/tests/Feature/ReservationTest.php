@@ -33,7 +33,7 @@ class ReservationTest extends TestCase
 
         $response->assertStatus(200);
         
-        $response->assertSeeText('aaa@gmail.com');
+        $response->assertSeeText('埼玉');
     }
 
     public function test_詳細ページ確認()
@@ -42,9 +42,9 @@ class ReservationTest extends TestCase
 
         $response->assertStatus(200);
 
-        $response->assertSeeText('aaa@gmail.com');
+        $response->assertSeeText('埼玉');
 
-        $response = $this->get('/reservations/5');//存在しないときの確認
+        $response = $this->get('/reservations/8');//存在しないときの確認
 
         $response->assertStatus(404);
     }
@@ -132,7 +132,7 @@ class ReservationTest extends TestCase
         $response = $this->put($update_url, $update_data);
     
         $response->assertStatus(302)
-            ->assertRedirect('reservations/edit/4');
+            ->assertRedirect('reservations/edit/8');
 
         $this->assertDatabaseHas('reservations', ['address' => 'eee@gmail.com']);
     }
