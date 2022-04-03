@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class Reservation extends Model
 {
+    protected $table = "reservations";
+
     protected $fillable = ['name', 'address', 'telnum', 'remarks','order', 'price', 'sumprice', 'category', 'categoryname', 'time', 'backtime',];
-    protected $table = 'Reservation';
 
     public function daySumAmount()
     {
