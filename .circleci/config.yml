@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  dusk:
+  build:
     docker:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mariadb:10.4
