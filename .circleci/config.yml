@@ -28,6 +28,7 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
           name: Run PHPUnit
+          command: cd app && php artisan migrate:fresh
           command: cd app && vendor/bin/phpunit
 
   deploy:
