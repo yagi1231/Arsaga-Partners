@@ -5,8 +5,8 @@ jobs:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mariadb:10.4
     environment:
-      - DB_CONNECTION: circle_test
-    working_directory: ~/p
+      - DB_CONNECTION: circle_testing
+    working_directory: ~/ci-demo
     steps:
       - checkout
       - run:
@@ -28,7 +28,7 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
           name: Run PHPUnit
-          command: cd app && php artisan migrate:fresh && vendor/bin/phpunit
+          command: cd app && vendor/bin/phpunit
 
   deploy:
     machine:
