@@ -29,8 +29,9 @@ jobs:
       - run:
           name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
-      - APP_URL: http://selenium:4444/wd/hub 
       - run: php artisan dusk:chrome-driver 99
+    environment:
+      - APP_URL: http://selenium:4444/wd/hub
       - run:
           name: Run Dusk
           command: cd app && php artisan dusk
