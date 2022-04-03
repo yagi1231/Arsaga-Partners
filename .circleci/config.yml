@@ -39,6 +39,7 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
 
+      - run: cd app && cp .env.dusk.local .env
       - run: docker-compose up -d --no-deps --build selenium   
       - run:
           name: Run Laravel Dusk Tests
