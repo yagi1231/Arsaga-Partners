@@ -29,17 +29,6 @@ jobs:
       - run:
           name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
-      - run:
-          name: Start Chrome Driver
-          command: ./vendor/laravel/dusk/bin/chromedriver-linux
-          background: true
-      - run:
-         name: Run Laravel Server
-         command: php artisan serve
-         background: true
-      - run:
-         name: Run Laravel Dusk Tests
-         command: php artisan dusk
 
   deploy:
     machine:
