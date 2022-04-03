@@ -6,6 +6,7 @@ jobs:
       - image: circleci/mariadb:10.4
     environment:
       - DB_CONNECTION: circle_testing
+      - APP_URL: http://selenium:4444/wd/hub
     working_directory: ~/p
     steps:
       - checkout
@@ -26,12 +27,7 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-      - run:
-          name: Run PHPUnit
-          command: cd app && vendor/bin/phpunit
       - run: php artisan dusk:chrome-driver 99
-    environment:
-      - APP_URL: http://selenium:4444/wd/hub
       - run:
           name: Run Dusk
           command: cd app && php artisan dusk
