@@ -4,11 +4,13 @@ jobs:
     docker:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mariadb:10.4
+        environment:
+          - MYSQL_DATABASE: port
+          - MYSQL_USER: root
+          - MYSQL_PASSWORD: password
+          - MYSQL_ROOT_PASSWORD: password
     environment:
-      - MYSQL_DATABASE: port
-      - MYSQL_USER: root
-      - MYSQL_PASSWORD: password
-      - MYSQL_ROOT_PASSWORD: password
+      - DB_HOST: 127.0.0.1
     
     working_directory: ~/p/app
     steps:
