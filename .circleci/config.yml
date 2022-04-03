@@ -20,11 +20,24 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 19.03.13
-      - run: sudo apt-get install -y libsqlite3-dev
-      - run: cd app && cp .env.dusk.local .env
-      - run: cd app && composer install -n --ignore-platform-reqs
-      - run: cd app && npm install
-      - run: cd app && npm run production
+      - checkout
+      - run:
+          name: Update apt-get
+          command: sudo apt-get update
+      - run:
+          name: Docker php extensions install
+          command: sudo docker-php-ext-install pdo_mysql
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+      - run:
+          name: Install PHP libraries
+          command: cd app && composer install -n --prefer-dist
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
 
       - run: docker-compose up -d --no-deps --build selenium   
       - run:
