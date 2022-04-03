@@ -9,7 +9,6 @@ jobs:
     working_directory: ~/p
     steps:
      - run: sudo apt-get install -y libsqlite3-dev
-     - run: cd app && cp .env.testing .env
      - run: cd app && composer install -n --ignore-platform-reqs
      - run: npm install
      - run: npm run production
