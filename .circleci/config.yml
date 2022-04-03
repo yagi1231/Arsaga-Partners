@@ -8,8 +8,9 @@ jobs:
       - DB_CONNECTION: circle_testing
     working_directory: ~/p
     steps:
+     - run: ls && cd app && ls
      - run: sudo apt-get install -y libsqlite3-dev
-     - run: cd app && composer install -n --ignore-platform-reqs
+     - run: composer install -n --ignore-platform-reqs
      - run: npm install
      - run: npm run production
      - run: cd app && vendor/bin/phpu 
