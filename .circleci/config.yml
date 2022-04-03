@@ -9,7 +9,6 @@ jobs:
     working_directory: ~/p
     steps:
       - checkout
-      - run: cd app && cp .env.example .env
       - run:
           name: Update apt-get
           command: sudo apt-get update
@@ -30,6 +29,7 @@ jobs:
       - run:
           name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
+      - run: cd app && cp .env.example .env
       - run:
           name: Start Chrome Driver
           command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
