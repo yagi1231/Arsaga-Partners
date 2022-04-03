@@ -14,6 +14,7 @@ jobs:
     
     working_directory: ~/p/app
     steps:
+      - checkout
       - run: sudo apt-get install -y libsqlite3-dev
       - run: cd app && cp .env.dusk.local.env
       - run: cd app && composer install -n --ignore-platform-reqs
