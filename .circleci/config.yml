@@ -30,6 +30,9 @@ jobs:
           name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
       - run:
+            command: chromedriver
+            background: true
+      - run:
           name: Run Dusk
           command: cd app && php artisan dusk
 
