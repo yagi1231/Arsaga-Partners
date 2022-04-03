@@ -6,15 +6,9 @@ jobs:
       - image: circleci/mariadb:10.4
     environment:
       - DB_CONNECTION: circle_testing
-      - APP_URL: http://selenium:4444/wd/hub
-      - MYSQL_ROOT_PASSWORD: password
-      - MYSQL_DATABASE: port
-      - MYSQL_USER: root
     working_directory: ~/p
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.13
       - run:
           name: Update apt-get
           command: sudo apt-get update
@@ -32,11 +26,32 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-      # - run:
-      #     name: Run PHPUnit
-      #     command: cd app && vendor/bin/phpunit
-      - run: cd app && cp .env.dusk.local .env
-      - run: docker-compose up -d --no-deps --build selenium
+      - run:
+          name: Run PHPUnit
+          command: cd app && vendor/bin/phpunit
+
+  dusk:
+    docker:
+      - image: circleci/php:7.3.0-node-browsers
+      - image: circleci/mariadb:10.4
+    environment:
+      - MYSQL_ROOT_PASSWORD: password
+      - MYSQL_DATABASE: port
+      - MYSQL_USER: root
+      - BUNDLE_JOBS: "3"
+      - BUNDLE_RETRY: "3"
+      - APP_ENV: local
+    
+    working_directory: ~/p/app
+    steps:
+      - run: sudo apt-get install -y libsqlite3-dev
+      - run: cp .env.dusk.local.env
+      - run: cd app && composer install -n --ignore-platform-reqs
+      - run: npm install
+      - run: npm run production
+      - run: cd app && vendor/bin/phpunit
+
+      - run: docker-compose up -d --no-deps --build selenium   
       - run:
           name: Run Laravel Dusk Tests
           command: cd app && php artisan dusk
@@ -57,9 +72,11 @@ workflows:
   build_and_deploy:
     jobs:
       - build
+      - dusk
       - deploy:
           requires:
             - build
+            - dusk
           filters:
             branches:
               only: master
