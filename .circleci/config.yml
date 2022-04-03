@@ -30,14 +30,7 @@ jobs:
           name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
       - run: cd app && cp .env.example .env
-      - run:
-          name: Start Chrome Driver
-          command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
-          background: true
-      - run:
-          name: Run Laravel Server
-          command: cd app && php artisan serve
-          background: true
+      - run: docker-compose build selenium
       - run:
           name: Run Laravel Dusk Tests
           command: cd app && php artisan dusk
