@@ -8,25 +8,25 @@ jobs:
       - DB_CONNECTION: circle_testing
     working_directory: ~/p
     steps:
-     - run: ls
-     - run: sudo apt-get install -y libsqlite3-dev
-     - run: composer install -n --ignore-platform-reqs
-     - run: npm install
-     - run: npm run production
-     - run: cd app && vendor/bin/phpu 
-     - run:
-         name: Start Chrome Driver
-         command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
-         background: true
-
-     - run:
-         name: Run Laravel Server
-         command: cd app && php artisan serve
-         background: true
-
-     - run:
-         name: Run Laravel Dusk Tests
-         command: cd app && php artisan dusk
+      - checkout
+       - run: ls
+       - run: sudo apt-get install -y libsqlite3-dev
+       - run: cd app && cp .env.testing .env
+       - run: cd app && composer install -n --ignore-platform-reqs
+       - run: npm install
+       - run: npm run production
+       - run: cd app && vendor/bin/phpunit 
+       - run:
+           name: Start Chrome Driver
+           command: ./vendor/laravel/dusk/bin/chromedriver-linux
+           background: true
+       - run:
+           name: Run Laravel Server
+           command: cd app && php artisan serve
+           background: true 
+       - run:
+           name: Run Laravel Dusk Tests
+           command:  cd app && php artisan dusk
 
   deploy:
     machine:
