@@ -27,7 +27,7 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-      - run: php artisan dusk:chrome-driver 99
+      - run: cd app && php artisan dusk:chrome-driver 99
       - run:
           name: Run Dusk
           command: cd app && php artisan dusk
