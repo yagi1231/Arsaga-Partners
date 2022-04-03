@@ -30,10 +30,6 @@ jobs:
           name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
       - run:
-          name: Start Laravel Server
-          command: cd app && php artisan serve
-          background: true
-      - run:
           name: Run Dusk
           command: cd app && php artisan dusk
           environment:
