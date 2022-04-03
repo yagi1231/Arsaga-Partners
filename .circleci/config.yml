@@ -6,7 +6,7 @@ jobs:
       - image: circleci/mariadb:10.4
     environment:
       - DB_CONNECTION: circle_testing
-    working_directory: ~/ci-demo
+    working_directory: ~/p
     steps:
       - checkout
       - run:

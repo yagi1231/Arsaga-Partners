@@ -37,5 +37,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $table = 'User';
+    protected $table = "User";
 }
