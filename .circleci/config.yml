@@ -1,34 +1,34 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/php:7.3.0-node-browsers
-      - image: circleci/mariadb:10.4
-    environment:
-      - DB_CONNECTION: circle_testing
-    working_directory: ~/p
-    steps:
-      - checkout
-      - run:
-          name: Update apt-get
-          command: sudo apt-get update
-      - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
-      - run:
-          name: Install PHP libraries
-          command: cd app && composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-      - run:
-          name: Run PHPUnit
-          command: cd app && vendor/bin/phpunit
+  # build:
+  #   docker:
+  #     - image: circleci/php:7.3.0-node-browsers
+  #     - image: circleci/mariadb:10.4
+  #   environment:
+  #     - DB_CONNECTION: circle_testing
+  #   working_directory: ~/p
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Update apt-get
+  #         command: sudo apt-get update
+  #     - run:
+  #         name: Docker php extensions install
+  #         command: sudo docker-php-ext-install pdo_mysql
+  #     - restore_cache:
+  #         keys:
+  #           - v1-dependencies-{{ checksum "composer.json" }}
+  #           - v1-dependencies-
+  #     - run:
+  #         name: Install PHP libraries
+  #         command: cd app && composer install -n --prefer-dist
+  #     - save_cache:
+  #         paths:
+  #           - ./vendor
+  #         key: v1-dependencies-{{ checksum "composer.json" }}
+  #     - run:
+  #         name: Run PHPUnit
+  #         command: cd app && vendor/bin/phpunit
 
   dusk:
     docker:
@@ -45,7 +45,7 @@ jobs:
     working_directory: ~/p/app
     steps:
       - run: sudo apt-get install -y libsqlite3-dev
-      - run: cp .env.dusk.local.env
+      - run: cd app && cp .env.dusk.local.env
       - run: cd app && composer install -n --ignore-platform-reqs
       - run: npm install
       - run: npm run production
@@ -56,27 +56,27 @@ jobs:
           name: Run Laravel Dusk Tests
           command: cd app && php artisan dusk
 
-  deploy:
-    machine:
-      image: circleci/classic:201808-01
-    steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "${KEY_FINGERPRINT}"  
-      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master '
+#   deploy:
+#     machine:
+#       image: circleci/classic:201808-01
+#     steps:
+#       - checkout
+#       - add_ssh_keys:
+#           fingerprints:
+#             - "${KEY_FINGERPRINT}"  
+#       - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master '
 
  
-workflows:
-  version: 2
-  build_and_deploy:
-    jobs:
-      - build
-      - dusk
-      - deploy:
-          requires:
-            - build
-            - dusk
-          filters:
-            branches:
-              only: master
+# workflows:
+#   version: 2
+#   build_and_deploy:
+#     jobs:
+#       - build
+#       - dusk
+#       - deploy:
+#           requires:
+#             - build
+#             - dusk
+#           filters:
+#             branches:
+#               only: master
