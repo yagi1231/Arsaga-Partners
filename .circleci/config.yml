@@ -7,6 +7,9 @@ jobs:
     environment:
       - DB_CONNECTION: circle_testing
       - APP_URL: http://selenium:4444/wd/hub
+      - MYSQL_ROOT_PASSWORD: password
+      - MYSQL_DATABASE: port
+      - MYSQL_USER: root
     working_directory: ~/p
     steps:
       - checkout
@@ -32,6 +35,7 @@ jobs:
       # - run:
       #     name: Run PHPUnit
       #     command: cd app && vendor/bin/phpunit
+      - run: cd app && cp .env.dusk.local .env
       - run: docker-compose up -d --no-deps --build selenium
       - run:
           name: Run Laravel Dusk Tests
