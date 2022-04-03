@@ -6,7 +6,7 @@ jobs:
       - image: circleci/mariadb:10.4
     environment:
       - DB_CONNECTION: circle_testing
-      - APP_URL: http://nginx
+      - APP_URL: http://4444
     working_directory: ~/p
     steps:
       - checkout
