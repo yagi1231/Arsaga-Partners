@@ -20,7 +20,6 @@ jobs:
       - run: cd app && composer install -n --ignore-platform-reqs
       - run: cd app && npm install
       - run: cd app && npm run production
-      - run: cd app && vendor/bin/phpunit
 
       - run: docker-compose up -d --no-deps --build selenium   
       - run:
