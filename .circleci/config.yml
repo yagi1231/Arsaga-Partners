@@ -1,6 +1,6 @@
 version: 2
 jobs:
-   build:
+  build:
     override:
       - vendor/bin/phpunit
       - ./vendor/laravel/dusk/bin/chromedriver-linux:
