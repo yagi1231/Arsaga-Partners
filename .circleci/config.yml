@@ -14,7 +14,6 @@ jobs:
       - run: cd app && cp .env.testing .env
       - run: cd app && composer install -n --ignore-platform-reqs
       - run: npm install
-      - run: npm run production
       - run: cd app && vendor/bin/phpunit 
       - run:
           name: Start Chrome Driver
