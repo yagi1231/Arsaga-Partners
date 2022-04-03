@@ -5,12 +5,15 @@ jobs:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mariadb:10.4
     environment:
+      - DB_CONNECTION: mysql
       - MYSQL_ROOT_PASSWORD: password
       - MYSQL_DATABASE: port
       - MYSQL_USER: root
+      - MYSQL_HOST: 127.0.0.1
       - BUNDLE_JOBS: "3"
       - BUNDLE_RETRY: "3"
       - APP_ENV: local
+      - APP_URL: http://nginx
     
     working_directory: ~/p/app
     steps:
