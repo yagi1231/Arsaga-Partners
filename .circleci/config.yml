@@ -1,24 +1,46 @@
 version: 2
 jobs:
   build:
+    docker:
+      - image: dyoshikawa/laravel:latest
+        environment:
+          APP_ENV: local
+          APP_KEY: base64:jRMWhl8pTIVapnvHyxOdrA6jOhFSKjj6zGhmx0NS6AM=
+          DB_CONNECTION: mysql
+          DB_USERNAME: root
+          DB_PASSWORD: secret
+          DB_DATABASE: circleci
+      - image: dyoshikawa/mysql:latest
+        environment:
+          MYSQL_ROOT_PASSWORD: secret
+          MYSQL_DATABASE: circleci
     steps:
       - checkout
-      - run: sudo apt-get install -y libsqlite3-dev
-      - run: cd app && cp .env.testing .env
-      - run: cd app && composer install -n --ignore-platform-reqs
-      - run: cd app && npm install
-      - run: cd app && npm run production
       - run:
-          name: Start Chrome Driver
-          command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
-          background: true
+          name: Install Composer Packages
+          command: |
+            cd app && composer install
       - run:
-          name: Run Laravel Server
-          command: cd app && php artisan serve
-          background: true
+          name: Install Dockerize
+          command: |
+            apk add -U wget
+            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+                && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+                && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.1
       - run:
-          name: Run Laravel Dusk Tests
-          command: cd app && php artisan dusk
+          name: Wait for MySQL
+          command: |
+             cd app && dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
+          name: Migrate DB
+          command: |
+             cd app && php artisan migrate
+      - run:
+          name: Migrate DB
+          command: |
+             cd app && php artisan dusk
 
     # build:
     # docker:
