@@ -11,6 +11,9 @@ jobs:
       - DB_CONNECTION: mysql
       - APP_URL: http://localhost
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
+      - MYSQL_PASSWORD: password
+      - MYSQL_DATABASE: port
+      - MYSQL_USER: root
     working_directory: ~/p/app
     steps:
       - checkout
