@@ -37,7 +37,7 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       - run: cd app && cp .env.testing .env
-      - run: docker-compose up -d --no-deps --build selenium   
+      - run: docker-compose up -d --build
       - run:
           name: Run Laravel Dusk Tests
           command: cd app && php artisan dusk
