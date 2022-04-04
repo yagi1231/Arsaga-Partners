@@ -29,7 +29,7 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-      - run: cd app && c .env.testing .env
+      - run: cd app && cp .env.testing .env
       - run:
          name: Run Laravel Dusk Tests
          command: cd app && php artisan dusk
