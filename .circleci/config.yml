@@ -4,8 +4,11 @@ jobs:
     docker:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mysql:5.7
-    environment:
-      - DB_CONNECTION: circle_testing
+        environment:
+            MYSQL_DATABASE: database1  # ココがポイント！
+            MYSQL_HOST: 127.0.0.1
+            MYSQL_ROOT_PASSWORD: 'fooxw'
+            MYSQL_ROOT_HOST: '%'
     working_directory: ~/p/app
     steps:
       - checkout
@@ -25,7 +28,6 @@ jobs:
       - run:
           name: Install PHP libraries
           command: cd app && composer install -n --prefer-dist
-      - run: cd app && php artisan make:migration create_users_table
       - run: cd app && php artisan migrate
       - save_cache:
           paths:
