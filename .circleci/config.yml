@@ -6,6 +6,9 @@ jobs:
       - image: circleci/mariadb:10.4
     environment:
       - DB_CONNECTION: circle_testing
+      - MYSQL_ROOT_PASSWORD: "password"
+      - MYSQL_DATABASE: port
+      - MYSQL_USER: root
     steps:
       - checkout
       - run: cd app && sudo apt-get install -y libsqlite3-dev
