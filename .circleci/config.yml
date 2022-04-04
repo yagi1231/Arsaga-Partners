@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: dyoshikawa/laravel:latest
+    environment:
+      - DB_CONNECTION: circle_testing
     steps:
       - checkout
       - setup_remote_docker:
