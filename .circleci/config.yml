@@ -2,39 +2,37 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.3.0-node-browsers
-      - image: circleci/mariadb:10.4
-    environment:
-      - DB_CONNECTION: mysql
-      - MYSQL_ROOT_PASSWORD: "password"
-      - MYSQL_DATABASE: port
-      - MYSQL_USER: root
+      - image: dyoshikawa/laravel:latest
     steps:
       - checkout
-      - run: cd app && sudo apt-get install -y libsqlite3-dev
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: Install Composer Packages
+          command: |
+            cd app && composer install
       - run: cd app && cp .env.testing .env
-      - run: cd app && composer install -n --ignore-platform-reqs
-      - run: cd app && php artisan key:generate
-      - run: cd app && php artisan dusk:chrome-driver
-      - run: cd app && npm install
-      - run: cd app && npm run production
       - run:
-          name: Start Chrome Driver
-          command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
-          background: true
+          name: Install Dockerize
+          command: |
+            apk add -U wget
+            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+                && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+                && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.1
       - run:
-          name: Run Laravel Server
-          command: cd app && php artisan serve
-          background: true
+          name: Wait for MySQL
+          command: |
+             cd app && dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
-          name: Run Laravel Dusk Tests
-          command: cd app && php artisan dusk
-      - store_artifacts:
-          path: tests/Browser/screenshots
-      - store_artifacts:
-          path: tests/Browser/console
-      - store_artifacts:
-          path: storage/logs
+          name: Migrate DB
+          command: |
+             cd app && php artisan migrate
+      - run:
+          name: Migrate DB
+          command: |
+             cd app && php artisan dusk
 
     # build:
     # docker:
