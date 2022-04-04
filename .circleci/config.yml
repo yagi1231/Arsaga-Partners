@@ -12,13 +12,7 @@ jobs:
           command: |
             cd app && composer install
       - run: cd app && cp .env.testing .env
-      - run:
-          name: Install Dockerize
-          command: |
-            apk add -U wget
-            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-                && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-                && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+      - run: docker-compose build
           environment:
             DOCKERIZE_VERSION: v0.6.1
       - run:
