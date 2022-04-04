@@ -30,17 +30,8 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
-          name: Start Chrome Driver
-          command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
-          background: true
-
-      - run:
-          name: Run Laravel Server
-          command: cd app && php artisan serve
-          background: true
-      - run:
-          name: Run Laravel Dusk Tests
-          command: cd app && php artisan dusk
+          name: Run PHPUnit
+          command: cd app && vendor/bin/phpunit
 
     # build:
     # docker:
