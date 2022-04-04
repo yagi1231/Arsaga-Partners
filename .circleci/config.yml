@@ -24,7 +24,9 @@ jobs:
       - run:
           name: Install PHP libraries
           command: cd app && composer install -n --prefer-dist
-      - run: cd app && php artisan migrate:status
+      - run: cd app && sudo apt-get install -y libsqlite3-dev
+      - run: cd app &&  npm install
+      - run: cd app &&  npm run production
       - save_cache:
           paths:
             - ./vendor
