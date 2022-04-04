@@ -13,8 +13,8 @@ jobs:
             cd app && composer install
       - run: cd app && cp .env.testing .env
       - run: docker-compose build
-          environment:
-            DOCKERIZE_VERSION: v0.6.1
+      environment:
+        DOCKERIZE_VERSION: v0.6.1
       - run:
           name: Wait for MySQL
           command: |
