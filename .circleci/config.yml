@@ -2,22 +2,21 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.2-node-browsers
-      - image: circleci/mysql:5.7
+      - image: circleci/php:7.3.0-node-browsers
+      - image: circleci/mariadb:10.4
         environment:
-          - MYSQL_DATABASE: port
-          - MYSQL_ROOT_PASSWORD: password
+          - DB_CONNECTION: circle_testing
     environment:
       - DB_HOST: 127.0.0.1
-    
     working_directory: ~/p/app
     steps:
       - checkout
       - setup_remote_docker:
           version: 19.03.13
+      - checkout
       - run:
           name: Update apt-get
-          command: cd app && composer update
+          command: sudo apt-get update
       - run:
           name: Docker php extensions install
           command: sudo docker-php-ext-install pdo_mysql
@@ -34,6 +33,7 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       - run: cd app && cp .env.testing .env
+      - run: docker-compose up -d --no-deps --build selenium   
       - run:
           name: Run Laravel Dusk Tests
           command: cd app && php artisan dusk
