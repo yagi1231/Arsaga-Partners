@@ -16,6 +16,8 @@ jobs:
           MYSQL_DATABASE: circleci
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 19.03.13
       - run:
           name: Install Composer Packages
           command: |
