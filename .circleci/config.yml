@@ -5,13 +5,7 @@ jobs:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mysql:5.7
         environment:
-            DB_CONNECTION: mysql
-            DB_DATABASE: port
-            DB_USERNAME: root
-            DB_HOST: 127.0.0.1
-            DB_ROOT_PASSWORD: 'password'
-            DB_ROOT_HOST: '%'
-    working_directory: ~/p/app
+            DB_CONNECTION: circle_testing
     steps:
       - checkout
       - setup_remote_docker:
