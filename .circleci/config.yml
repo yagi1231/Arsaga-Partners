@@ -9,8 +9,6 @@ jobs:
           - MYSQL_ROOT_PASSWORD: password
     environment:
       - DB_HOST: 127.0.0.1
-    environment:
-      - DB_CONNECTION: circle_testing
     steps:
       - checkout
       - setup_remote_docker:
