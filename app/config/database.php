@@ -36,12 +36,13 @@ return [
     'connections' => [
 
         'circle_testing' => [
+            'url' => env('http://nginx'),
             'driver' => 'mysql',
             'host' => '127.0.0.1',
             'port' => '3306',
             'database' => 'port',
             'username' => 'root',
-            'password' => 'password',
+            'password' => '',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

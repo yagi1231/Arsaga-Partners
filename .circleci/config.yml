@@ -6,8 +6,6 @@ jobs:
       - image: circleci/mariadb:10.4
         environment:
           - DB_CONNECTION: circle_testing
-    environment:
-      - DB_HOST: 127.0.0.1
     working_directory: ~/p/app
     steps:
       - checkout
