@@ -6,6 +6,10 @@ jobs:
       - image: circleci/mysql:5.7
     environment:
       - DB_CONNECTION: circle_testing
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:mCMts5Zh6t+ZL/3GaGn8P39S460g8+lhdXWiGsxuT60=
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
     steps:
       - checkout
       - setup_remote_docker:
