@@ -30,8 +30,8 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
-          name: Run PHPUnit
-          command: cd app && vendor/bin/phpunit
+          name: Run Laravel Dusk Tests
+          command: cd app && php artisan dusk
 
     # build:
     # docker:
