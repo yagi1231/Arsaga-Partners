@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mysql:5.7
     environment:
-      - MYSQL_HOST: mysql
+      - DB_HOST: mysql
       - MYSQL_ROOT_PASSWORD: password
       - MYSQL_DATABASE: port
       - MYSQL_USER: root 
