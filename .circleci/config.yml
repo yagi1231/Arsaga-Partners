@@ -4,10 +4,12 @@ jobs:
     docker:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mariadb:10.4
+      environment:
+      - DB_CONNECTION: circle_testing
     steps:
       - checkout
       - run: cd app && sudo apt-get install -y libsqlite3-dev
-      - run: cd app && cp .env.testing .env
+      # - run: cd app && cp .env.testing .env
       - run: cd app && composer install -n --ignore-platform-reqs
       - run: cd app && php artisan key:generate
       - run: cd app && php artisan dusk:chrome-driver
