@@ -6,7 +6,7 @@ jobs:
       - image: circleci/mariadb:10.4
         environment:
           - DB_CONNECTION: circle_testing
-          - DATABASE_URL: http://selenium:4444/wd/hub
+          - DATABASE_URL: http://localhost
     working_directory: ~/p/app
     steps:
       - checkout
