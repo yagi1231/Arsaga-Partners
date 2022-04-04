@@ -25,6 +25,7 @@ jobs:
       - run:
           name: Install PHP libraries
           command: cd app && composer install -n --prefer-dist
+      - run: cd app && php artisan make:migration create_users_table
       - run: cd app && php artisan migrate
       - save_cache:
           paths:
