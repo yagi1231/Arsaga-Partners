@@ -6,10 +6,11 @@ jobs:
       - image: circleci/mysql:5.7
         environment:
             DB_CONNECTION: mysql
-            # MYSQL_DATABASE: root  # ココがポイント！
-            # MYSQL_HOST: 127.0.0.1
-            # MYSQL_ROOT_PASSWORD: 'password'
-            # MYSQL_ROOT_HOST: 3306
+            DB_DATABASE: port
+            DB_USERNAME: root
+            DB_HOST: 127.0.0.1
+            DB_ROOT_PASSWORD: 'password'
+            DB_ROOT_HOST: '%'
     working_directory: ~/p/app
     steps:
       - checkout
@@ -29,7 +30,7 @@ jobs:
       - run:
           name: Install PHP libraries
           command: cd app && composer install -n --prefer-dist
-      - run: cd app && cp .env.testing .env
+      # - run: cd app && cp .env.testing .env
       - save_cache:
           paths:
             - ./vendor
