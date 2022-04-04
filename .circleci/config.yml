@@ -13,7 +13,6 @@ jobs:
       - run: cd app && php artisan dusk:chrome-driver
       - run: cd app && npm install
       - run: cd app && npm run production
-      - run: cd app && vendor/bin/phpunit
       - run:
           name: Start Chrome Driver
           command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
