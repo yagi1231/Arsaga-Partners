@@ -6,7 +6,7 @@ jobs:
       - image: circleci/mysql:5.7
     environment:
       - DB_CONNECTION:  mysql
-      - DB_PASSWORD: "password"
+      - DB_PASSWORD: ""
       - DB_DATABASE: port
       - DB_USERNAME: root 
     working_directory: ~/p/app
