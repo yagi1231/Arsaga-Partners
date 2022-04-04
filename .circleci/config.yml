@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mysql:5.7
         environment:
-            DB_CONNECTION: testing
+            DB_CONNECTION: mysql
             MYSQL_DATABASE: root  # ココがポイント！
             MYSQL_HOST: 127.0.0.1
             MYSQL_ROOT_PASSWORD: 'password'
@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Install PHP libraries
           command: cd app && composer install -n --prefer-dist
-      - run: cd app && php artisan migrate
+      - run: cd app && cp .env.testing .env
       - save_cache:
           paths:
             - ./vendor
