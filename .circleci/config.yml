@@ -1,42 +1,25 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/php:7.3.0-node-browsers
-      - image: circleci/mysql:5.7
-        environment:
-          - DB_CONNECTION: circle_testing
-    environment:
-      - DB_HOST: 127.0.0.1
-    working_directory: ~/p/app
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 19.03.13
-      - checkout
-      - run:
-          name: Update apt-get
-          command: sudo apt-get update
-      - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
-      - run:
-          name: Install PHP libraries
-          command: cd app && composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-
-      - run: cd app && cp .env.testing .env
-      - run: docker-compose up -d --no-deps --build selenium   
-      - run:
-          name: Run Laravel Dusk Tests
-          command: cd app && php artisan dusk
+  machine:
+      pre:
+        - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        - sudo apt-get update
+        - sudo apt-get install google-chrome-stable
+      services:
+        - mysql
+    dependencies:
+      override:
+        - composer install --prefer-dist --no-interaction
+      post:
+        - mv .env.testing .env
+    test:
+      override:
+        - vendor/bin/phpunit
+        - ./vendor/laravel/dusk/bin/chromedriver-linux:
+              background: true
+        - php artisan serve:
+              background: true
+        - php artisan dusk
 
     # build:
     # docker:
