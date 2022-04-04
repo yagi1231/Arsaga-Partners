@@ -5,15 +5,9 @@ jobs:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mysql:5.7
     environment:
-      - APP_DEBUG: true
-      - APP_ENV: testing
-      - APP_KEY: base64:mCMts5Zh6t+ZL/3GaGn8P39S460g8+lhdXWiGsxuT60=
-      - DB_CONNECTION: mysql
-      - APP_URL: http://localhost
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
-      - MYSQL_PASSWORD: password
+      - MYSQL_ROOT_PASSWORD: "password"
       - MYSQL_DATABASE: port
-      - MYSQL_USER: root
+      - MYSQL_USER: root 
     working_directory: ~/p/app
     steps:
       - checkout
