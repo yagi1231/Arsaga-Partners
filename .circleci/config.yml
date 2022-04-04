@@ -11,39 +11,22 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
       - checkout
-      - run:
-          name: Update apt-get
-          command: sudo apt-get update
-      - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
-      - run:
-          name: Install PHP libraries
-          command: cd app && composer install -n --prefer-dist
-      - run: cd app && sudo apt-get install -y libsqlite3-dev
-      - run: cd app &&  npm install
-      - run: cd app &&  npm run production
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-      - run: cd app && php artisan dusk:chrome-driver 99
-
+      - run: sudo apt-get install -y libsqlite3-dev
+      - run: cd app && cp .env.testing .env
+      - run: cd app && composer install -n --ignore-platform-reqs
+      - run: cd app && npm install
+      - run: cd app && npm run production
       - run:
           name: Start Chrome Driver
-          command: cd app &&  ./vendor/laravel/dusk/bin/chromedriver-linux
+          command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
           background: true
       - run:
           name: Run Laravel Server
-          command: cd app &&  php artisan serve
+          command: cd app && php artisan serve
           background: true
       - run:
-         name: Run Laravel Dusk Tests
-         command: cd app && php artisan dusk
+          name: Run Laravel Dusk Tests
+          command: cd app && php artisan dusk
 
     # build:
     # docker:
