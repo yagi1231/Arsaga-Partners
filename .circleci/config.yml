@@ -2,39 +2,34 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.3.0-node-browsers
-      - image: circleci/mysql:5.7
+      - image: circleci/php:7.2-apache-node-browsers
         environment:
-          - DB_CONNECTION: circle_testing
-    environment:
-      - DB_HOST: 127.0.0.1
-    working_directory: ~/p/app
+        - DB_HOST=127.0.0.1
+        - DB_PORT=3306
+        - DB_DATABASE=circleci
+        - DB_USERNAME=circleci
+        - DB_PASSWORD=circleci
+      - image: circleci/mysql:5.6.39-ram
+        environment:
+        - MYSQL_ROOT_PASSWORD=circleci
+        - MYSQL_DATABASE=circleci
+        - MYSQL_USER=circleci
+        - MYSQL_PASSWORD=circleci
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.13
-      - checkout
       - run:
-          name: Update apt-get
-          command: sudo apt-get update
+          name: install dependecies
+          command: cd app && composer install 
       - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
       - run:
-          name: Install PHP libraries
-          command: cd app && composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-
-      - run: cd app && cp .env.testing .env 
+          name: Wait for db
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
-          name: Run Laravel Dusk Tests
+          name: Test
           command: cd app && php artisan dusk
 
     # build:
