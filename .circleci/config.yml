@@ -31,7 +31,10 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
           name: Run Laravel Dusk Tests
-          command: cd app && php artisan dusk
+          command: cd app && php artisan migrate
+      - run:
+         name: Run Laravel Dusk Tests
+         command: cd app && php artisan dusk
 
     # build:
     # docker:
