@@ -5,7 +5,10 @@ jobs:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mariadb:10.4
         environment:
-          - DB_CONNECTION: circle_testing
+          - DB_CONNECTION: mysql
+          - MYSQL_PASSWORD: password
+          - MYSQL_DATABASE: port
+          - MYSQL_USER: root
     environment:
       - DB_HOST: 127.0.0.1
     working_directory: ~/p/app
