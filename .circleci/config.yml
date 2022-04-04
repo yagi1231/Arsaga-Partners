@@ -8,6 +8,7 @@ jobs:
           - DB_CONNECTION: circle_testing
     environment:
       - DB_HOST: 127.0.0.1
+      - DB_CONNECTION: circle_testing
     working_directory: ~/p/app
     steps:
       - checkout
@@ -31,9 +32,6 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-
-      - run: cd app && cp .env.testing .env
-      - run: rm -rf bootstrap/cache/config.php
       - run:
           name: Run Laravel Dusk Tests
           command: cd app && php artisan dusk
