@@ -7,7 +7,7 @@ jobs:
     environment:
       - DB_CONNECTION:  mysql
       - DB_PASSWORD: ""
-      - DB_DATABASE: port
+      - DB_DATABASE: kouch
       - DB_USERNAME: root 
     working_directory: ~/p/app
     steps:
