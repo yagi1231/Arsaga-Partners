@@ -15,10 +15,6 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 19.03.13
-      - checkout
-      - run:
-          name: Update apt-get
-          command: sudo apt-get update
       - run:
           name: Docker php extensions install
           command: sudo docker-php-ext-install pdo_mysql
