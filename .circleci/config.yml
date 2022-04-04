@@ -2,31 +2,34 @@ version: 2
 jobs:
   build:
     docker:
-      - image: dyoshikawa/laravel:latest
-    environment:
-      - DOCKERIZE_VERSION: v0.6.1
+      - image: circleci/php:7.3.0-node-browsers
+      - image: circleci/mariadb:10.4
     steps:
-      - checkout
-      - setup_remote_docker:
-          version: 19.03.13
-      - run:
-          name: Install Composer Packages
-          command: |
-            cd app && composer install
+      - run: cd app && sudo apt-get install -y libsqlite3-dev
       - run: cd app && cp .env.testing .env
-      - run: docker-compose build
+      - run: cd app && composer install -n --ignore-platform-reqs
+      - run: cd app && php artisan key:generate
+      - run: cd app && php artisan dusk:chrome-driver
+      - run: cd app && npm install
+      - run: cd app && npm run production
+      - run: cd app && vendor/bin/phpunit
       - run:
-          name: Wait for MySQL
-          command: |
-             cd app && dockerize -wait tcp://localhost:3306 -timeout 1m
+          name: Start Chrome Driver
+          command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
+          background: true
       - run:
-          name: Migrate DB
-          command: |
-             cd app && php artisan migrate
+          name: Run Laravel Server
+          command: cd app && php artisan serve
+          background: true
       - run:
-          name: Migrate DB
-          command: |
-             cd app && php artisan dusk
+          name: Run Laravel Dusk Tests
+          command: cd app && php artisan dusk
+      - store_artifacts:
+          path: tests/Browser/screenshots
+      - store_artifacts:
+          path: tests/Browser/console
+      - store_artifacts:
+          path: storage/logs
 
     # build:
     # docker:
