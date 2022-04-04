@@ -1,41 +1,23 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/php:7.3.0-node-browsers
-      - image: circleci/mysql:5.7
-        environment:
-          - DB_CONNECTION: circle_testing
-    environment:
-      - DB_HOST: 127.0.0.1
-    working_directory: ~/p/app
-    machine:
-    pre:
-      - sudo apt-get update; USE_PRECOMPILE=true sudo -E circleci-install php 7.0.4
-    php:
-      version: 7.0.4
-    services:
-      - mysql
-    post:
-      - chromedriver:
+  steps:
+      - run: sudo apt-get install -y libsqlite3-dev
+      - run: cd app && cp .env.testing .env
+      - run: cd app && composer install -n --ignore-platform-reqs
+      - run: npm install
+      - run: npm run production
+      - run:
+          name: Start Chrome Driver
+          command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
           background: true
-
-    dependencies:
-      pre:
-        - cd app && sudo composer self-update
-      post:
-        - cp .env.testing .env
-        - php artisan serve:
-            background: true
-    
-    general:
-      artifacts:
-        - "tests/Browser/screenshots"
-        - "tests/Browser/console"
-    
-    test:
-      override:
-        - cd app &&  php artisan dusk
+      - run:
+          name: Run Laravel Server
+          command: cd app && php artisan serve
+          background: true
+      - run:
+          name: Run Laravel Dusk Tests
+          command: cd app && php artisan dusk
 
     # build:
     # docker:
