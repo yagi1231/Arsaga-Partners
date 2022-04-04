@@ -16,6 +16,9 @@ jobs:
       - run: cd app && composer install -n --ignore-platform-reqs
       - run: cd app && npm install
       - run: cd app && npm run production
+      - run: cd app &&  sudo apt update
+      - run: cd app && sudo docker-php-ext-install zip pdo_mysql
+      - run: cd app && sudo composer self-update
       - run:
           name: Start Chrome Driver
           command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
