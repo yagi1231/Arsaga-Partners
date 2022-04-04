@@ -38,10 +38,11 @@ jobs:
 
       - run: cd app && cp .env.testing .env
       - run: docker-compose up -d --no-deps --build app
+      - run: docker-compose up -d --no-deps --build mysql
       - run: docker-compose up -d --no-deps --build selenium   
       - run:
           name: Run Laravel Dusk Tests
-          command: cd app && php artisan dusk
+          command: docker-compose exec app bash && cd app && php artisan dusk
 
     # build:
     # docker:
