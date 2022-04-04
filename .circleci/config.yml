@@ -2,22 +2,22 @@ version: 2
 jobs:
   build:
   steps:
-      - run: sudo apt-get install -y libsqlite3-dev
-      - run: cd app && cp .env.testing .env
-      - run: cd app && composer install -n --ignore-platform-reqs
-      - run: npm install
-      - run: npm run production
-      - run:
-          name: Start Chrome Driver
-          command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
-          background: true
-      - run:
-          name: Run Laravel Server
-          command: cd app && php artisan serve
-          background: true
-      - run:
-          name: Run Laravel Dusk Tests
-          command: cd app && php artisan dusk
+    - run: sudo apt-get install -y libsqlite3-dev
+    - run: cd app && cp .env.testing .env
+    - run: cd app && composer install -n --ignore-platform-reqs
+    - run: npm install
+    - run: npm run production
+    - run:
+        name: Start Chrome Driver
+        command: cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
+        background: true
+    - run:
+        name: Run Laravel Server
+        command: cd app && php artisan serve
+        background: true
+    - run:
+        name: Run Laravel Dusk Tests
+        command: cd app && php artisan dusk
 
     # build:
     # docker:
