@@ -18,6 +18,16 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Update apt-get
+          command: sudo apt-get update
+      - run:
+          name: Docker php extensions install
+          command: sudo docker-php-ext-install pdo_mysql
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+      - run:
           name: install dependecies
           command: cd app && composer install -n --prefer-dist
       - run:
