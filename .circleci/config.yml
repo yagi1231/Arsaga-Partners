@@ -3,17 +3,6 @@ jobs:
   build:
     docker:
       - image: dyoshikawa/laravel:latest
-        environment:
-          APP_ENV: local
-          APP_KEY: base64:jRMWhl8pTIVapnvHyxOdrA6jOhFSKjj6zGhmx0NS6AM=
-          DB_CONNECTION: mysql
-          DB_USERNAME: root
-          DB_PASSWORD: password
-          DB_DATABASE: port
-      - image: dyoshikawa/mysql:latest
-        environment:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: port
     steps:
       - checkout
       - setup_remote_docker:
@@ -22,6 +11,7 @@ jobs:
           name: Install Composer Packages
           command: |
             cd app && composer install
+      - run: cd app && cp .env.testing .env
       - run:
           name: Install Dockerize
           command: |
