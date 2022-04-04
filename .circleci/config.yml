@@ -5,9 +5,10 @@ jobs:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mysql:5.7
         environment:
-            MYSQL_DATABASE: database1  # ココがポイント！
+            DB_CONNECTION: testing
+            MYSQL_DATABASE: root  # ココがポイント！
             MYSQL_HOST: 127.0.0.1
-            MYSQL_ROOT_PASSWORD: 'fooxw'
+            MYSQL_ROOT_PASSWORD: 'password'
             MYSQL_ROOT_HOST: '%'
     working_directory: ~/p/app
     steps:
