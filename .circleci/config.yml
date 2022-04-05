@@ -26,17 +26,77 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-
-      - run: cd app && php artisan config:cache
-      # run seeding
-      - run: cd app && php artisan migrate
-      - run: cd app && php artisan db:seed
-
-      # run tests!
-      - run: cd app && php ./vendor/bin/phpunit
       - run:
-          name: Run Laravel Dusk Tests
-          command: cd app && php artisan dusk
+          name: Run PHPUnit
+          command: cd app && vendor/bin/phpunit
+
+
+
+
+
+
+  # build:
+  #   docker:
+  #     # specify the version you desire here
+  #     - image: circleci/php:7.3-apache-node-browsers
+  #     - image: circleci/mysql:5.7
+
+  #     # Specify service dependencies here if necessary
+  #     # CircleCI maintains a library of pre-built images
+  #     # documented at https://circleci.com/docs/2.0/circleci-images/
+  #     # - image: circleci/mysql:9.4
+
+  #   environment:
+  #     - APP_DEBUG: true
+  #     - APP_ENV: testing
+  #     - APP_KEY: base64:mCMts5Zh6t+ZL/3GaGn8P39S460g8+lhdXWiGsxuT60=
+  #     - DB_CONNECTION: circle_testing
+  #     - APP_URL: http://localhost:8000
+  #     - MYSQL_ALLOW_EMPTY_PASSWORD: true
+
+  #   working_directory: ~/p/app
+
+  #   steps:
+  #     - checkout
+
+  #     # Install PHP Extension
+  #     - run: cd app && sudo docker-php-ext-install pdo_mysql
+
+  #     # Download and cache dependencies
+  #     - restore_cache:
+  #         keys:
+  #           - v1-dependencies-{{ checksum "composer.json" }}
+  #           # fallback to using the latest cache if no exact match is found
+  #           - v1-dependencies-
+
+  #     - run: cd app && composer install -n --prefer-dist
+
+  #     - save_cache:
+  #         paths:
+  #           - ./vendor
+  #         key: v1-dependencies-{{ checksum "composer.json" }}
+
+  #     - run: cd app && php artisan config:cache
+  #     # run seeding
+  #     - run: cd app && php artisan migrate
+  #     - run: cd app && php artisan db:seed
+
+  #     #circleCIのchromeは72なので、合わせる
+  #     - run: cd app && php artisan dusk:chrome-driver 99
+
+  #     # run tests!
+  #     - run: cd app && php ./vendor/bin/phpunit
+  #     - run:
+  #         name: Start Chrome Driver
+  #         command: ./vendor/laravel/dusk/bin/chromedriver-linux
+  #         background: true
+  #     - run:
+  #         name: Run Laravel Server
+  #         command: cd app && php artisan serve
+  #         background: true
+  #     - run:
+  #         name: Run Laravel Dusk Tests
+  #         command: cd app && php artisan dusk
 
     # build:
     # docker:
