@@ -49,6 +49,7 @@ jobs:
       - run: cd app && php artisan db:seed
       - run: docker-compose up -d --no-deps --build selenium
       #circleCIのchromeは72なので、合わせる
+       - run: brew install selenium-server-standalone
       - run: cd app &&  selenium-server -port 4444
 
       # run tests!
