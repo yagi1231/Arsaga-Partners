@@ -12,11 +12,7 @@ jobs:
       # - image: circleci/mysql:9.4
 
     environment:
-      - APP_DEBUG: true
-      - APP_ENV: testing
-      - APP_KEY: base64:mCMts5Zh6t+ZL/3GaGn8P39S460g8+lhdXWiGsxuT60=
       - DB_CONNECTION: circle_testing
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     working_directory: ~/p/app
 
