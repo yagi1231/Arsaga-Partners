@@ -2,14 +2,37 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.3-apache-node-browsers
-      - image: circleci/mysql:5.7
+      - image: circleci/php:7.3.0-node-browsers
+      - image: circleci/mariadb:10.4
     environment:
       - DB_CONNECTION: circle_testing
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:mCMts5Zh6t+ZL/3GaGn8P39S460g8+lhdXWiGsxuT60=
+      - APP_URL: http://localhost:8000
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/p
     steps:
       - checkout
-       Install PHP Extension
+
+      - run:
+          name: Update apt-get
+          command: sudo apt-get update
+      - run:
+          name: Docker php extensions install
+          command: sudo docker-php-ext-install pdo_mysql
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+      - run:
+          name: Install PHP libraries
+          command: cd app && composer install -n --prefer-dist
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+
       - run: cd app && sudo docker-php-ext-install pdo_mysql
 
       # Download and cache dependencies
@@ -30,24 +53,6 @@ jobs:
       # run seeding
       - run: cd app && php artisan migrate
       - run: cd app && php artisan db:seed
-
-      - run:
-          name: Update apt-get
-          command: sudo apt-get update
-      - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
-      - run:
-          name: Install PHP libraries
-          command: cd app && composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
           name: Run PHPUnit
           command: cd app && php artisan dusk
@@ -81,7 +86,7 @@ jobs:
   #   steps:
   #     - checkout
 
-      # Install PHP Extension
+  #     # Install PHP Extension
   #     - run: cd app && sudo docker-php-ext-install pdo_mysql
 
   #     # Download and cache dependencies
