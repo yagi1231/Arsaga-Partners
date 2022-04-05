@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - checkout
-
+      - run:  cd app && cp .env.testing .env
       # Install PHP Extension
       - run: sudo docker-php-ext-install pdo_mysql
 
@@ -34,7 +34,7 @@ jobs:
             - v1-dependencies-
 
       - run: cd app && composer install -n --prefer-dist
-
+      
       - save_cache:
           paths:
             - ./vendor
@@ -46,7 +46,7 @@ jobs:
       - run:  cd app && php artisan db:seed
 
       #circleCIのchromeは72なので、合わせる
-      - run: cd app && php artisan dusk:chrome-driver 71
+      - run: cd app && php artisan dusk:chrome-driver 72
 
       # run tests!
       - run:  cd app && php ./vendor/bin/phpunit
