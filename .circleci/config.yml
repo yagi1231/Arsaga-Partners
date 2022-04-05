@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.3.0-node-browsers
-      - image: circleci/mariadb:10.4
+       - image: circleci/php:7.3.0-node-browsers
+       - image: circleci/mariadb:10.4
     environment:
       - DB_CONNECTION: circle_testing
     working_directory: ~/p/app
@@ -32,13 +32,13 @@ jobs:
           command: cd app && vendor/bin/phpunit
 
   deploy:
-     machine:
+    machine:
        - image: circleci/classic:201808-01
-     steps:
+    steps:
        - checkout
        - add_ssh_keys:
-            fingerprints:
-              - "${KEY_FINGERPRINT}"  
+           fingerprints:
+             - "${KEY_FINGERPRINT}"  
        - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master '
 
  
