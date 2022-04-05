@@ -22,7 +22,7 @@ jobs:
     steps:
       - checkout
       - run:  cd app && cp .env.testing .env
-      - run:  cd app/resurces/views/reservations && cat show.blade.php
+      - run:  cd app/resources/views/reservations && cat show.blade.php
       # Install PHP Extension
       - run: sudo docker-php-ext-install pdo_mysql
       - run: sudo apt-get install -y libsqlite3-dev
