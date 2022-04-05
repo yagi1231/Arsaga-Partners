@@ -112,28 +112,28 @@ jobs:
     # environment:
     #   - DB_CONNECTION: circle_testing
     # working_directory: ~/p
-    steps:
-      - checkout
-      - run:
-          name: Update apt-get
-          command: sudo apt-get update
-      - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
-      - run:
-          name: Install PHP libraries
-          command: cd app && composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-      - run:
-          name: Run PHPUnit
-          command: cd app && vendor/bin/phpunit
+    # steps:
+    #   - checkout
+    #   - run:
+    #       name: Update apt-get
+    #       command: sudo apt-get update
+    #   - run:
+    #       name: Docker php extensions install
+    #       command: sudo docker-php-ext-install pdo_mysql
+    #   - restore_cache:
+    #       keys:
+    #         - v1-dependencies-{{ checksum "composer.json" }}
+    #         - v1-dependencies-
+    #   - run:
+    #       name: Install PHP libraries
+    #       command: cd app && composer install -n --prefer-dist
+    #   - save_cache:
+    #       paths:
+    #         - ./vendor
+    #       key: v1-dependencies-{{ checksum "composer.json" }}
+    #   - run:
+    #       name: Run PHPUnit
+    #       command: cd app && vendor/bin/phpunit
 
 #   deploy:
 #     machine:
