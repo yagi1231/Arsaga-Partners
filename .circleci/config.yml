@@ -25,7 +25,7 @@ jobs:
          version: 19.03.13
          
       - run:  cd app && cp .env.testing .env
-      - run:  cat /app/resources/views/reservations/create
+      - run:  cd app/resources/views/reservations && cat create.blade.php
       # Install PHP Extension
       - run: sudo docker-php-ext-install pdo_mysql
       - run: sudo apt-get install -y libsqlite3-dev
