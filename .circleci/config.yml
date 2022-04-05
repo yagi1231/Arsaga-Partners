@@ -1,6 +1,9 @@
 versin: 2
 jobs:
   build:
+   docker:
+      - image: circleci/php:7.3.0-node-browsers
+      - image: circleci/mariadb:10.4
     machine: true
     steps:
       - checkout
