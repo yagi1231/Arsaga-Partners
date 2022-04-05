@@ -18,6 +18,9 @@ jobs:
       - DB_CONNECTION: mysql
       - APP_URL: http://localhost:8000
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
+      - DB_PASSWORD: "password"
+      - DB_DATABASE: port
+      - DB_USERNAME: root
     working_directory: ~/p/app
 
     steps:
@@ -50,7 +53,6 @@ jobs:
 
       # run tests!
       - run:  cd app && php ./vendor/bin/phpunit
-      - run:  cd app && cp .env.testing .env
       - run:
           name: Start Chrome Driver
           command:  cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
