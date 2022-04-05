@@ -21,7 +21,6 @@ jobs:
       - MYSQL_ROOT_PASSWORD: "password"
       - MYSQL_DATABASE: port
       - MYSQL_USER: root
-
     working_directory: ~/p/app
 
     steps:
