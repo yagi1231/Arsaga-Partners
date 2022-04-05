@@ -28,7 +28,7 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
           name: Run PHPUnit
-          command: cd app && vendor/bin/phpunit
+          command: cd app && php artisan dusk
 
 
 
