@@ -16,7 +16,6 @@ jobs:
       - APP_ENV: testing
       - APP_KEY: base64:BaGXvpvUWnUbGA1RiOapw45K2UCK8AeYM3o62IDV9Qw=
       - DB_CONNECTION: circle_testing
-      - APP_URL: http://localhost:8000
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/p/app/artisan 
 
@@ -66,6 +65,8 @@ jobs:
       - run:
           name: Run Laravel Dusk Tests
           command:  cd app && php artisan dusk
+          environment:
+            APP_URL: http://localhost:8000
 
 
 
