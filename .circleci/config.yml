@@ -17,7 +17,7 @@ jobs:
       - APP_KEY: base64:BaGXvpvUWnUbGA1RiOapw45K2UCK8AeYM3o62IDV9Qw=
       - DB_CONNECTION: circle_testing
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
-    working_directory: ~/p
+    working_directory: ~/p/app
 
     steps:
       - checkout
@@ -50,7 +50,6 @@ jobs:
       - run:  cd app && php artisan db:seed
 
       #circleCIのchromeは72なので、合わせる
-      - run: cd app && php artisan dusk:chrome-driver 72
 
       # run tests!
       - run:  cd app && php ./vendor/bin/phpunit
