@@ -30,16 +30,15 @@ jobs:
       - run:
           name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
-
-#   deploy:
-#     machine:
-#       - image: circleci/classic:201808-01
-#     steps:
-#       - checkout
-#       - add_ssh_keys:
-#            fingerprints:
-#              - "${KEY_FINGERPRINT}"  
-#       - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master '
+  deploy:
+    machine:
+      - image: circleci/classic:201808-01
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "${KEY_FINGERPRINT}"  
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master '
 
  
 # workflows:
