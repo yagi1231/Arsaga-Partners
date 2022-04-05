@@ -56,9 +56,12 @@ jobs:
 
       - run:
           name: Start Chrome Driver 
-          command:  docker-compose up -d --no-deps --build selenium
-          command:  docker-compose up -d --no-deps --build app
-          command:  docker-compose exec app bash
+          command:  docker-compose up -d --no-deps --build selenium && docker-compose up -d --no-deps --build app
+       - run:
+          name: Start Chrome Driver 
+          command:  docker-compose exec app bash 
+       - run:
+          name: Start Chrome Driver 
           command:  cd app && php artisan dusk
       # run tests!
       - run:  cd app && php ./vendor/bin/phpunit
