@@ -31,10 +31,10 @@ jobs:
           name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
 
-   deploy:
-     machine:
-       image: circleci/classic:201808-01
-     steps:
+  deploy:
+    machine:
+      - image: circleci/classic:201808-01
+    steps:
       - checkout
       - add_ssh_keys:
            fingerprints:
