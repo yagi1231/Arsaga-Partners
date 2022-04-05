@@ -54,15 +54,9 @@ jobs:
 
       #circleCIのchromeは72なので、合わせる
 
-      - run:
-          name: Start Chrome Driver 
-          command:  docker-compose up -d --no-deps --build selenium && docker-compose up -d --no-deps --build app
-       - run:
-          name: Start Chrome Driver 
-          command:  docker-compose exec app bash 
-       - run:
-          name: Start Chrome Driver 
-          command:  cd app && php artisan dusk
+      - run: docker-compose up -d --no-deps --build selenium && docker-compose up -d --no-deps --build app
+      - run: docker-compose exec app bash 
+      - run: cd app && php artisan dusk
       # run tests!
       - run:  cd app && php ./vendor/bin/phpunit
       - run:
