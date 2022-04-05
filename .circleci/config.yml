@@ -4,6 +4,8 @@ jobs:
     machine: true
     steps:
       - checkout
+      - setup_remote_docker:
+         version: 19.03.13
       - run:
           name: Update apt-get
           command: sudo apt-get update
