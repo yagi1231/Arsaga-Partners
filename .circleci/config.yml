@@ -16,7 +16,6 @@ jobs:
       - APP_ENV: testing
       - APP_KEY: base64:mCMts5Zh6t+ZL/3GaGn8P39S460g8+lhdXWiGsxuT60=
       - DB_CONNECTION: circle_testing
-      - APP_URL: http://localhost:8000
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     working_directory: ~/p/app
