@@ -3,8 +3,8 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.3.0-apache-node-browsers
-      - image: circleci/mysql:5.7
+       - image: circleci/php:7.3.0-node-browsers
+       - image: circleci/mariadb:10.4
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -12,11 +12,7 @@ jobs:
       # - image: circleci/mysql:9.4
 
     environment:
-      - APP_DEBUG: true
-      - APP_ENV: testing
-      - APP_KEY: base64:BaGXvpvUWnUbGA1RiOapw45K2UCK8AeYM3o62IDV9Qw=
       - DB_CONNECTION: circle_testing
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/p/app
 
     steps:
