@@ -6,11 +6,6 @@ jobs:
       - image: circleci/mysql:5.7
     environment:
       - DB_CONNECTION: circle_testing
-      - APP_DEBUG: true
-      - APP_ENV: testing
-      - APP_KEY: base64:mCMts5Zh6t+ZL/3GaGn8P39S460g8+lhdXWiGsxuT60=
-      - APP_URL: http://localhost:8000
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/p
     steps:
       - checkout
@@ -86,7 +81,7 @@ jobs:
   #   steps:
   #     - checkout
 
-  #     # Install PHP Extension
+      # Install PHP Extension
   #     - run: cd app && sudo docker-php-ext-install pdo_mysql
 
   #     # Download and cache dependencies
