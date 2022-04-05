@@ -4,6 +4,10 @@ jobs:
     machine: true
     steps:
       - checkout
+      - restore_cache:
+    keys:
+      - v1-dependencies-{{ checksum "composer.json" }}
+      - v1-dependencies-
       - run:
           name: Setup docker
           command: |
