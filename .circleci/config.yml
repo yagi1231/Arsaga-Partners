@@ -62,7 +62,7 @@ jobs:
           name: Run Laravel Dusk Tests
           command:  cd app && php artisan dusk
           environment:
-            APP_URL: http://localhost:8000
+            APP_URL: http://nginx 
 
 
 
