@@ -56,7 +56,7 @@ jobs:
 
       - run: docker-compose up -d --no-deps --build selenium && docker-compose up -d --no-deps --build app
       
-      - run: docker-compose run app php artisan dusk
+      - run: docker-compose exec app bash
       
 
 
