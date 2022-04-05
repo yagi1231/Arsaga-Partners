@@ -30,7 +30,7 @@ class InfoTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(1))
                     ->visit('/infos/create')
-                    ->type('name="name', 'test_name')
+                    ->type('input-name', 'test_name')
                     ->type('input[name="address"]', 'aaa@gamil.com') 
                     ->type('input[name="telnum"]', '08012345786')
                     ->type('input[name="remarks"]', 'なし')

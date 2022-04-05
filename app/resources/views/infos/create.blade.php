@@ -18,7 +18,7 @@
    <table>
    <tr>
      <th>名前</th>
-     <td><input name='name' class="form-control width" value="{{ old('name')}}" >様</td>
+     <td><input name='name' class="form-control width" value="{{ old('name')}}"  dusk="input-name">様</td>
    </tr>
    <tr>
      <th>住所</th>
