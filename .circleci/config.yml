@@ -47,11 +47,9 @@ workflows:
   build_and_deploy:
     jobs:
       - build
-      - dusk
       - deploy:
           requires:
             - build
-            - dusk
           filters:
             branches:
               only: master
