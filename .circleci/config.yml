@@ -21,6 +21,8 @@ jobs:
 
     steps:
       - checkout
+       - setup_remote_docker:
+          version: 19.03.13
       - run:  cd app && cp .env.testing .env
       - run:  cd app && ls
       # Install PHP Extension
@@ -51,6 +53,12 @@ jobs:
 
       #circleCIのchromeは72なので、合わせる
 
+      - run:
+        name: Start Chrome Driver 
+        command:  docker-compose up -d --no-deps --build selenium
+        command:  docker-compose up -d --no-deps --build app
+        command:  docker-compose exec app bash
+        command:  cd app && php artisan dusk
       # run tests!
       - run:  cd app && php ./vendor/bin/phpunit
       - run:
