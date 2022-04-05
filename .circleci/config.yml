@@ -2,15 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
        - image: circleci/php:7.3.0-node-browsers
        - image: circleci/mariadb:10.4
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mysql:9.4
-
     environment:
       - DB_CONNECTION: circle_testing
     working_directory: ~/p/app
@@ -37,6 +30,31 @@ jobs:
       - run:
           name: Run PHPUnit
           command: cd app && vendor/bin/phpunit
+
+   deploy:
+     machine:
+       image: circleci/classic:201808-01
+     steps:
+      - checkout
+      - add_ssh_keys:
+           fingerprints:
+             - "${KEY_FINGERPRINT}"  
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master '
+
+ 
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - dusk
+      - deploy:
+          requires:
+            - build
+            - dusk
+          filters:
+            branches:
+              only: master
 
 
 
@@ -134,28 +152,3 @@ jobs:
     #   - run:
     #       name: Run PHPUnit
     #       command: cd app && vendor/bin/phpunit
-
-#   deploy:
-#     machine:
-#       image: circleci/classic:201808-01
-#     steps:
-#       - checkout
-#       - add_ssh_keys:
-#           fingerprints:
-#             - "${KEY_FINGERPRINT}"  
-#       - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master '
-
- 
-# workflows:
-#   version: 2
-#   build_and_deploy:
-#     jobs:
-#       - build
-#       - dusk
-#       - deploy:
-#           requires:
-#             - build
-#             - dusk
-#           filters:
-#             branches:
-#               only: master
