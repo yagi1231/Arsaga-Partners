@@ -54,8 +54,8 @@ jobs:
       # run tests!
       - run:  cd app && php ./vendor/bin/phpunit
       - run:
-          name: Start Chrome Driver
-          command:  cd app && ./vendor/laravel/dusk/bin/chromedriver-linux
+          name: Start Chrome Driver 
+          command:  cd app && ./vendor/laravel/dusk/bin/chromedriver-linux --verbose
           background: true
       - run:
           name: Run Laravel Server
