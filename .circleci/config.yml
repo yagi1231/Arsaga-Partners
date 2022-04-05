@@ -55,7 +55,7 @@ jobs:
       #circleCIのchromeは72なので、合わせる
 
       - run: docker-compose up -d --no-deps --build selenium && docker-compose up -d --no-deps --build app
-      - run: docker-compose exec app bash 
+      - run: docker-compose ps
       - run: cd app && php artisan dusk
       # run tests!
       - run:  cd app && php ./vendor/bin/phpunit
