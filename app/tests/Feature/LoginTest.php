@@ -33,20 +33,14 @@ class LoginTest extends TestCase
 
         $user = factory(User::class)->create([
             'password'  => bcrypt('laraveltest123')
-            //パスワードは好きな言葉で大丈夫です
         ]);
 
-        // 認証されないことを確認
         $this->assertFalse(Auth::check());
 
-        // ログインを実行
         $response = $this->post('login', [
             'email'    => $user->email,
             'password' => 'laraveltest123'
-            //先ほど設定したパスワードを入力
         ]);
-
-        // 認証されていることを確認
         $this->assertTrue(Auth::check());
         $response->assertRedirect('/reservations/index');
     }
@@ -56,34 +50,33 @@ class LoginTest extends TestCase
         $response = $this->get('/login');
         $response->assertStatus(200);
 
-        // パスワードが正しく無い状態でログイン
         $response = $this->post('/login', [
             'email' => $this->user->email, 
             'password' => 'Test123'
         ]);
-        // リダイレクトで戻ってくる。
+ 
         $response->assertStatus(302);
-        // リダイレクトで戻ってきた時はログインページにいる事
+     
         $response->assertRedirect('/login');
-        // 失敗しているので認証されていない事
+ 
         $this->assertFalse(Auth::check());
   }
 
     public function test_ログアウトが正しくできるか()
   {
-        // ログイン状態の作成
+      
         $response = $this->actingAs($this->user);
         $response = $this->get('/');
         $response->assertStatus(200);
         $this->assertTrue(Auth::check());
-        // ログアウト処理をする
+
         $this->post('logout');
-        // ログアウト出来たら200番が帰ってきているか
+
         $response->assertStatus(200);
-        // ログインページにいる事
+
         $response = $this->get('/login');
         $response->assertStatus(200);
-        // 認証されていないことを確認
+
         $this->assertFalse(Auth::check());
   }
 
