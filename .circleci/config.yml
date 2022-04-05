@@ -14,9 +14,8 @@ jobs:
     environment:
       - APP_DEBUG: true
       - APP_ENV: testing
-      - APP_KEY: base64:mCMts5Zh6t+ZL/3GaGn8P39S460g8+lhdXWiGsxuT60=
-      - DB_CONNECTION: circle_testing
-      - APP_URL: http://localhost:8000
+      - APP_KEY: base64:BaGXvpvUWnUbGA1RiOapw45K2UCK8AeYM3o62IDV9Qw=
+      - APP_URL: http://localhost
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/p/app/artisan 
 
@@ -34,7 +33,7 @@ jobs:
             - v1-dependencies-
 
       - run: cd app && composer install -n --prefer-dist
-      
+
       - save_cache:
           paths:
             - ./vendor
