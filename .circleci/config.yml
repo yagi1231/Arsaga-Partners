@@ -5,12 +5,6 @@ jobs:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mariadb:10.4
     environment:
-      - DB_CONNECTION: circle_testing
-      - APP_DEBUG: true
-      - APP_ENV: testing
-      - APP_KEY: base64:mCMts5Zh6t+ZL/3GaGn8P39S460g8+lhdXWiGsxuT60=
-      - APP_URL: http://nginx
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/p
     steps:
       - checkout
@@ -32,7 +26,7 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-
+          
       - run: cd app && sudo docker-php-ext-install pdo_mysql
 
       # Download and cache dependencies
@@ -48,7 +42,7 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-
+      - run: cd app && cp .env.testing .env
       - run: cd app && php artisan config:cache
       # run seeding
       - run: cd app && php artisan migrate
