@@ -3,16 +3,26 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.3.0-node-browsers
-      - image: circleci/mariadb:10.4
+      - image: circleci/php:7.3.0-apache-node-browsers
+      - image: circleci/mysql:5.7
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mysql:9.4
+
     environment:
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:BaGXvpvUWnUbGA1RiOapw45K2UCK8AeYM3o62IDV9Qw=
       - DB_CONNECTION: circle_testing
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/p/app
 
     steps:
       - checkout
       - run:  cd app && cp .env.testing .env
-      - run:  cd app/resources/views/infos && cat index.blade.php
+      - run:  cd app/resources/views/infos && cat .blade.php
       # Install PHP Extension
       - run: sudo docker-php-ext-install pdo_mysql
       - run: sudo apt-get install -y libsqlite3-dev
@@ -125,57 +135,57 @@ jobs:
   #         name: Run Laravel Dusk Tests
   #         command: cd app && php artisan dusk
 
-    build:
-    docker:
-      - image: circleci/php:7.3.0-node-browsers
-      - image: circleci/mariadb:10.4
-    environment:
-      - DB_CONNECTION: circle_testing
-    working_directory: ~/p
-    steps:
-      - checkout
-      - run:
-          name: Update apt-get
-          command: sudo apt-get update
-      - run:
-          name: Docker php extensions install
-          command: sudo docker-php-ext-install pdo_mysql
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
-      - run:
-          name: Install PHP libraries
-          command: cd app && composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-      - run:
-          name: Run PHPUnit
-          command: cd app && vendor/bin/phpunit
+    # build:
+    # docker:
+    #   - image: circleci/php:7.3.0-node-browsers
+    #   - image: circleci/mariadb:10.4
+    # environment:
+    #   - DB_CONNECTION: circle_testing
+    # working_directory: ~/p
+    # steps:
+    #   - checkout
+    #   - run:
+    #       name: Update apt-get
+    #       command: sudo apt-get update
+    #   - run:
+    #       name: Docker php extensions install
+    #       command: sudo docker-php-ext-install pdo_mysql
+    #   - restore_cache:
+    #       keys:
+    #         - v1-dependencies-{{ checksum "composer.json" }}
+    #         - v1-dependencies-
+    #   - run:
+    #       name: Install PHP libraries
+    #       command: cd app && composer install -n --prefer-dist
+    #   - save_cache:
+    #       paths:
+    #         - ./vendor
+    #       key: v1-dependencies-{{ checksum "composer.json" }}
+    #   - run:
+    #       name: Run PHPUnit
+    #       command: cd app && vendor/bin/phpunit
 
-  deploy:
-    machine:
-      image: circleci/classic:201808-01
-    steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "${KEY_FINGERPRINT}"  
-      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master '
+#   deploy:
+#     machine:
+#       image: circleci/classic:201808-01
+#     steps:
+#       - checkout
+#       - add_ssh_keys:
+#           fingerprints:
+#             - "${KEY_FINGERPRINT}"  
+#       - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/app/ && git pull origin master '
 
  
-workflows:
-  version: 2
-  build_and_deploy:
-    jobs:
-      - build
-      - dusk
-      - deploy:
-          requires:
-            - build
-            - dusk
-          filters:
-            branches:
-              only: master
+# workflows:
+#   version: 2
+#   build_and_deploy:
+#     jobs:
+#       - build
+#       - dusk
+#       - deploy:
+#           requires:
+#             - build
+#             - dusk
+#           filters:
+#             branches:
+#               only: master
