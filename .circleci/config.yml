@@ -56,17 +56,8 @@ jobs:
 
       - run: docker-compose up -d --no-deps --build selenium && docker-compose up -d --no-deps --build app
       - run: docker-compose ps
-      - run: cd app && php artisan dusk
       # run tests!
       - run:  cd app && php ./vendor/bin/phpunit
-      - run:
-          name: Start Chrome Driver 
-          command:  cd app && ./vendor/laravel/dusk/bin/chromedriver-linux --verbose
-          background: true
-      - run:
-          name: Run Laravel Server
-          command:  cd app && php artisan serve
-          background: true
       - run:
           name: Run Laravel Dusk Tests
           command:  cd app && php artisan dusk
