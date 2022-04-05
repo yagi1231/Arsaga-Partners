@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  deploy:
+  build:
     machine:
       - image: circleci/classic:201808-01
     steps:
