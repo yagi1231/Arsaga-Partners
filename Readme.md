@@ -27,19 +27,16 @@ kouchは大戸屋所沢プロペ通り店をフランチャイズしたオーナ
 <img width="1353" alt="スクリーンショット 2022-04-07 14 35 39" src="https://user-images.githubusercontent.com/77727362/162127668-4532cea9-1492-40b2-82bc-14bee41a9edf.png"> 
 
 3,お客様にkouchの注文は初めてか確認。初めてなら新規登録、２回目以降なら電話番号を伺う  
-<img width="1353" alt="スクリーンショット 2022-04-07 14 35 39" src="https://user-images.githubusercontent.com/77727362/162133084-cac0f807-5e10-4002-88c1-bb566ee30895.png">
+<img width="1353" alt="スクリーンショット 2022-04-07 14 35 39" src="https://user-images.githubusercontent.com/77727362/162133084-cac0f807-5e10-4002-88c1-bb566ee30895.png">  
+
 4,新規登録、または検索を行い詳細ページ中にある「新規注文画面へ」を選択 
-<img width="1680" alt="スクリーンショット 2021-12-20 3 06 36" src="https://user-images.githubusercontent.com/77727362/146687225-fb2fb8d0-60ef-429b-b420-f94e0a11f18f.png">  
+<img width="1680" alt="スクリーンショット 2021-12-20 3 06 36" src="https://user-images.githubusercontent.com/77727362/162130008-81c25b51-9581-4b1f-9e75-132d8567847e.png">  
 
 5,新規注文に移行したら、残りの注文内容、金額、カテゴリー、企業、民家を打ち込みし「登録完了する」を選択  
 <img width="1680" alt="スクリーンショット 2021-12-20 3 09 47" src="https://user-images.githubusercontent.com/77727362/162130288-22eec363-56a6-445b-a7a5-fb54ffc8cf2f.png">
 
 6,予約一覧表に日付・時間順に表示されているので住所、時間、大戸屋とのコラボなどを確認することができる。    
 <img width="1680" alt="スクリーンショット 2021-12-20 3 31 38" src="https://user-images.githubusercontent.com/77727362/162131471-6a07713a-6073-4cd8-a730-7f9be7b75f49.png">  
-
-7,売上ページは日別、月別ごとに表示されており、検索、ページネーションをつけることで見やすくしました
-<img width="1680" alt="スクリーンショット 2021-12-20 3 31 38" src="https://user-images.githubusercontent.com/77727362/162130972-e42738c1-44a0-4c36-a100-2dd951889be7.png">
-
 
 ・検索機能の使い方  
 　予約一覧表の検索では日付と名前・電話番号・住所のどれかを記入することで検索できるようになっている  
