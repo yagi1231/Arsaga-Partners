@@ -9,8 +9,8 @@
   </div>
   <form class="form-inline my-2 my-lg-0 ml-2">
     <div class="form-group">
-    <input type="search" class="reservation_form" name="search"  placeholder="キーワードを入力" >
-    <input type="date" class="reservation_form" name="date-search" placeholder="キーワードを入力">
+      <input type="search" class="reservation_form" name="search"  placeholder="キーワードを入力" >
+      <input type="date" class="reservation_form" name="date-search" placeholder="キーワードを入力">
     </div>
     <input type="submit" value="検索" class="btn btn-info" dusk="search">
   </form>
@@ -47,8 +47,6 @@
 </div>
 <script>
     'use strict';
-
-// geolocation
 navigator.geolocation.getCurrentPosition(success, fail);
 
 function success(pos) {
@@ -59,12 +57,10 @@ function fail(error) {
     alert('位置情報の取得に失敗しました。エラーコード:' + error.code);
 }
 
-// UTCをミリ秒に
 function utcToJSTime(utcTime) {
     return utcTime * 1000;
 }
 
-// データ取得
 function ajaxRequest(lat, long) {
     const url = 'https://api.openweathermap.org/data/2.5/forecast';
     const appId = 'a8cdaf03cabca4b4743db5488df9e663';
@@ -80,7 +76,7 @@ function ajaxRequest(lat, long) {
         }
     })
     .done(function(data) {
-        // 天気予報データ
+
         data.list.forEach(function(forecast, index) {
             const dateTime = new Date(utcToJSTime(forecast.dt));
             const month = dateTime.getMonth() + 1;
@@ -90,9 +86,8 @@ function ajaxRequest(lat, long) {
             const temperature = Math.round(forecast.main.temp);
             const description = forecast.weather[0].description;
             const iconPath = `/images/${forecast.weather[0].icon}.svg`;
-     
-            // 現在の天気とそれ以外で出力を変える
-             if(index <= 4) {
+
+             if(index <= 3) {
                 const tableRow = `
             <ul class="mt-4"style="display: inline-block; >
               <li>

@@ -134,6 +134,83 @@
     margin-bottom:300px;
   }
 }
+
+@media screen and (min-width: 1267px) {
+  a.btn.btn-primary {
+    padding: 0.5rem 1.5rem;
+    position: relative;
+    right:200px;
+   }
+   a.btn.btn-secondary {
+    padding: 0.5rem 1.5rem;
+    position: relative;
+    right:200px;
+   }
+   input.reservation_form {
+    width:180px;
+    margin-left:5px;
+    position: relative;
+    top:30px;
+    left:220px;
+  }
+  input.info_form {
+    width:230px;
+    position: relative;
+    top:30px;
+    margin-left:180px;
+    left:220px;
+  }
+  .btn.btn-info {
+    padding: 0.3rem 2rem;
+    position: relative;
+    margin-left:10px;
+    top:30px;
+    left:230px;
+  }
+  #now .icon img {
+    width: 30px;
+    height:30px;
+ }
+
+  img{
+      width: 30px;
+  }
+  
+  div#now {
+      margin-left:1050px;
+      font-size:10px;
+  }
+  
+  .mt-4 {
+      font-size:10px;
+  }
+  .sale_form {
+    position:relative;
+    top:50px;
+    left:550px;
+ }
+  .btn.btn-info.sale {
+   position:relative;
+    top:50px;
+    left:550px;
+    text-align: center;
+  }
+  .sale_form {
+  position:relative;
+  top:110px;
+  left:850px;
+ }
+ .btn.btn-info.sale {
+ position:relative;
+  top:110px;
+  left:850px;
+  text-align: center;
+ }
+ .top-menu {
+  margin-bottom:200px;
+ }
+}
+
 @media screen and (min-width: 1300px) {
   a.btn.btn-primary {
     padding: 0.5rem 1.5rem;

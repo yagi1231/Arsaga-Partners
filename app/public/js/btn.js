@@ -81,6 +81,7 @@
     });
   });
 
+  
   //クリックしたら色と文字を変える
   // <td><p class="check alert alert-warning" style="cursor: pointer;">配達準備中</p></td>
   //   $('.check').on('click', function() {

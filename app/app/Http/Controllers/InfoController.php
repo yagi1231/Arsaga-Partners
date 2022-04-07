@@ -61,27 +61,24 @@ class InfoController extends Controller
              'status' => 1
         ]);
         
-        // リダイレクト処理
       
         return redirect()->route('infos/show', ['id' => $infos])->with('success', '作成完了');
     }
 
     public function show($id){
-        // 該当するIDのメモをデータベースから取得
+
         $info = Info::where('status', 1)->where('id', $id)->first();
         if ($info === null) {
             abort(404);
         }
-        //   dd($memo);
-        //取得したメモをViewに渡す
+
         return view('infos/show',compact('info'));
     }
 
     public function edit($id){
-        // 該当するIDのメモをデータベースから取得
+
         $info = Info::where('status', 1)->where('id', $id)->first();
-        //   dd($memo);
-        //取得したメモをViewに渡す
+
         return view('infos/edit',compact('info'));
     }
 
@@ -114,10 +111,8 @@ class InfoController extends Controller
     public function delete(Request $request, $id)
     {
         $inputs = $request->all();
-        // 論理削除なので、status=2
+        
         Info::where('id', $id)->update([ 'status' => 2 ]);
-        // ↓は物理削除
-        // Info::where('id', $id)->delete();
 
         return redirect('/infos/index')->with('success', '削除完了');
     }

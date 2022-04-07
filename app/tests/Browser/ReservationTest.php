@@ -72,6 +72,21 @@ class ReservationTest extends DuskTestCase
                     ->assertSee('更新完了');
         });
     }
+
+    public function test_ボタン確認()
+    {
+        $this->browse(function (Browser $browser){
+            $browser->loginAs(User::find(1))
+                    ->visit('/reservations/create')
+                    ->click('@name-btn')
+                    ->click('@menu-btn')
+                    ->click('@sum-btn')
+                    ->assertInputValue('input[name="sumprice"]', '780')
+                    ->click('@remove-btn')
+                    ->click('@sum-btn')
+                    ->assertInputValue('input[name="sumprice"]', 'undefined');
+        });
+    }
     
     public function test_顧客削除()
     {

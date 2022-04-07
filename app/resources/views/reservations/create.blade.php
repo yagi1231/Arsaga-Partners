@@ -35,10 +35,10 @@
       <td><div class="box">
         <textarea id="textarea" name="order" class="textarea" value="1" cols="50" style="width:80%;height:250px;">{{ old('order') }}</textarea>
         <p>省略ボタン</p>
-        <div class="shop-name" style="cursor: pointer;">KOUCHメニュー</div>
+        <div class="shop-name" style="cursor: pointer;" dusk="name-btn">KOUCHメニュー</div>
         <div class="click-btn">
           <input type="button" class="aa"id="order-btn" value="x" onclick="prican()">
-          <input type="button" id="order-btn" value="ヒレ丼   -780" onclick="menu(value)">
+          <input type="button" id="order-btn" value="ヒレ丼   -780" onclick="menu(value)" dusk="menu-btn">
           <input type="button" id="order-btn" value="ステーキ  -680" onclick="menu(value)">
           <input type="button" id="order-btn" value="ロース   -680" onclick="menu(value)">
           <input type="button" id="order-btn" value="しょうが  -680" onclick="menu(value)">
@@ -74,9 +74,9 @@
     <tr>
       <th>金額</th>
       <td>
-        <input type="button" class="remove-btn"value="x" onclick="prican()">
+        <input type="button" class="remove-btn"value="x" onclick="prican()" dusk="remove-btn">
         <input type="text" id="pri" name="price" value="{{ old('price') }}"class="mt-2 mb-2">
-        <input type="button"  value="=" onclick="sum()">
+        <input type="button"  value="=" onclick="sum()" dusk="sum-btn">
         <input size="20" type="text" id="sumpri" name="sumprice" value="{{ old('sumprice') }}">円
       </td>
     </tr>

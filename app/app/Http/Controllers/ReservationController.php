@@ -168,18 +168,17 @@ class ReservationController extends Controller
     public function delete(Request $request, $id)
     {
         $inputs = $request->all();
-        // 論理削除なので、status=2
+
         Reservation::where('id', $id)->update([ 'status' => 2 ]);
         // ↓は物理削除
         // Info::where('id', $id)->delete();
-
         return redirect('/reservations/index')->with('success', '削除完了');
     }
 
     public function sum_sale()
     {
         $reservation = new Reservation();
-        $results = $reservation->daySumAmount();//モデルから関数よびだし
+        $results = $reservation->daySumAmount();
         return view('reservations/sales/sum_sale', compact('results'));
     }
 

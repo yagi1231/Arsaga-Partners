@@ -6,14 +6,14 @@
 <a href="#" class="btn btn-primary">月別売上</a>
 <a href="/reservations/sales/month_ave_sale" class="btn btn-secondary">月別平均</a>
 <div class="container">
-  <form class="form-inline my-2 my-lg-0 ml-2">
-    <div class="form-group">
-    <input type="month" class="sale_form" name="search"  value="<?php echo date('Y-m');?>" placeholder="キーワードを入力" aria-label="検索...">
-    </div>
-    <input type="submit" value="検索" class="btn btn-info sale" dusk="search">
-  </form>
   <div class="row">
     <div class="header-title">月別売上</div>
+    <form class="form-inline my-2 my-lg-0 ml-2">
+        <div class="form-group">
+          <input type="month" class="info_form pull-right" name="search"  value="<?php echo date('Y-m');?>" placeholder="キーワードを入力" aria-label="検索...">
+        </div>
+      <input type="submit" value="検索" class="btn btn-info" dusk="search">
+    </form>
     <table>
       <thead>
         <tr>
