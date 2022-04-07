@@ -21,14 +21,13 @@ kouchは大戸屋所沢プロペ通り店をフランチャイズしたオーナ
 # 使い方
 ・注文を受ける流れ  
 1、ログインを行う  
-<img width="1680" alt="スクリーンショット 2021-12-20 3 37 13" src="https://user-images.githubusercontent.com/77727362/146687283-b4f0ecf8-f817-4f1b-a37a-319978d5cb46.png">  
+<img width="1680" alt="スクリーンショット 2021-12-20 3 37 13" src="https://user-images.githubusercontent.com/77727362/162132847-a3900f91-630b-4551-b19b-8a64f2f0687e.png">  
 
 2,電話がかかってきたらハンバーガーメニューの「顧客一覧」を選択  
 <img width="1353" alt="スクリーンショット 2022-04-07 14 35 39" src="https://user-images.githubusercontent.com/77727362/162127668-4532cea9-1492-40b2-82bc-14bee41a9edf.png"> 
 
 3,お客様にkouchの注文は初めてか確認。初めてなら新規登録、２回目以降なら電話番号を伺う  
-<img width="1353" alt="スクリーンショット 2022-04-07 14 35 39" src="https://user-images.githubusercontent.com/77727362/162130288-22eec363-56a6-445b-a7a5-fb54ffc8cf2f.png">
-
+<img width="1353" alt="スクリーンショット 2022-04-07 14 35 39" src="https://user-images.githubusercontent.com/77727362/162133084-cac0f807-5e10-4002-88c1-bb566ee30895.png">
 4,新規登録、または検索を行い詳細ページ中にある「新規注文画面へ」を選択 
 <img width="1680" alt="スクリーンショット 2021-12-20 3 06 36" src="https://user-images.githubusercontent.com/77727362/146687225-fb2fb8d0-60ef-429b-b420-f94e0a11f18f.png">  
 
