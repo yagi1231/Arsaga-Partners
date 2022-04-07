@@ -10,5 +10,9 @@ bash-web:
 		docker-compose exec web bash
 bash-db:
 		docker-compose exec mysql bash
+build-up:
+		docker-compose up -d --build
+logs:
+		docker-compose logs
 migrate:
 		docker-compose exec app php app/artisan migrat		

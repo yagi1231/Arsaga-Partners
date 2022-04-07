@@ -40,9 +40,10 @@ Route::get('/reservations/sales/ave_sale', 'ReservationController@ave_sale')->na
 Route::get('/reservations/sales/month_ave_sale', 'ReservationController@month_ave_sale')->name('reservations/month_ave_sale');
 Route::get('/reservations/sales/month_sum_sale', 'ReservationController@month_sum_sale')->name('reservations/month_sum_sale');
 
-// Route::resource('reservations', 'ReservationController');
-// Route::resource('infos', 'InfoController');
+Route::resource('reservations', 'ReservationController');
+Route::resource('infos', 'InfoController');
 });
+
 
 // Auth::routes(['verify' => true]);
 // Route::get('/infos/index', 'InfoController@index')->middleware('verified');
