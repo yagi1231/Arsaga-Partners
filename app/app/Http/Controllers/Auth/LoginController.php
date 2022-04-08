@@ -39,7 +39,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    private const GUEST_USER_ID = 1;
+    private const GUEST_USER_ID = 5;
 
     // ゲストログイン処理
      public function guestLogin() 
