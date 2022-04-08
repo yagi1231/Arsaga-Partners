@@ -11,7 +11,7 @@
     @else
         <button class="btn btn-outline-primary mt-5 brand-text font-weight-light font-weight-bold">
           <a href="{{ route('login.guest') }}" class="text-white">
-            ゲストログイン
+            ゲストログイン 
           </a>
         </button>
         <a href="{{ route('login') }}" class="btn btn-outline-primary mt-5 brand-text font-weight-light font-weight-bold">ログイン</a>
