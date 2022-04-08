@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
+
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 Route::get('/infos/index', 'InfoController@index')->name('infos/index');

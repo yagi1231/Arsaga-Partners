@@ -92,7 +92,7 @@ function ajaxRequest(lat, long) {
             <ul class="mt-4"style="display: inline-block; >
               <li>
                     <div class="info">
-                        ${hours}:${min}
+                    ${month}/${date} ${hours}:${min}
                     </div>
                     <div class="icon"><img src="${iconPath}"></div>
                     <div><span class="description">${description}</span></div>

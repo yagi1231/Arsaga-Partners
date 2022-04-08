@@ -44,7 +44,7 @@ class ReservationTest extends TestCase
 
         $response->assertSeeText('埼玉');
 
-        $response = $this->get('/reservations/8');//存在しないときの確認
+        $response = $this->get('/reservations/8');
 
         $response->assertStatus(404);
     }
