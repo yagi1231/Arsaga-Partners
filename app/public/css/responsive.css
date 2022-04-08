@@ -61,7 +61,22 @@
     .top-menu {
       margin-top:50px;
     }
+    .receipt-name {
+      border-bottom: 2px solid black;
+      width: 100%;
+      font-size: 30px;
+      margin-top: 20px;
+      margin: 0 auto;
   }
+  .receipt-date {
+    float: right;
+    margin-right: 70px;
+  }
+  .receipt-company {
+    float: right;
+    margin-left: 50px;
+  }
+}
 @media screen and (min-width: 481px) {
     a.btn.btn-primary {
       padding: 0.3rem 1rem;
