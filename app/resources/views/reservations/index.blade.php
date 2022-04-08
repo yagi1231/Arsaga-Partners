@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<h3 id="place" style="margin-top:50px;"></h3>
 <table id="forecast"></table>
 <div class="container">
   <div class="row">
@@ -86,6 +87,8 @@ function ajaxRequest(lat, long) {
             const temperature = Math.round(forecast.main.temp);
             const description = forecast.weather[0].description;
             const iconPath = `/images/${forecast.weather[0].icon}.svg`;
+
+            $('#place').text(data.city.name);
 
              if(index <= 3) {
                 const tableRow = `
