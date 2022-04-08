@@ -76,6 +76,12 @@
     float: right;
     margin-left: 50px;
   }
+  .btn.btn-success {
+    padding: 0.3rem 2rem;
+    position: relative;
+    margin-left:10px;
+    bottom:8px;
+   }
 }
 @media screen and (min-width: 481px) {
     a.btn.btn-primary {
@@ -94,13 +100,13 @@
       width:180px;
       position: relative;
       top:30px;
-      left:10px;
+      left:50px;
     }
     input.info_form {
       width:230px;
       position: relative;
       top:30px;
-      margin-left:130px;
+      margin-left:180px;
     }
     .btn.btn-info {
       padding: 0.3rem 2rem;
@@ -146,6 +152,13 @@
    .top-menu {
     margin-bottom:300px;
   }
+  .btn.btn-success {
+    padding: 0.3rem 2rem;
+    position: relative;
+    margin-left:10px;
+    top:30px;
+    left:60px;
+   }
 }
 
 @media screen and (min-width: 1267px) {
@@ -164,21 +177,21 @@
     margin-left:5px;
     position: relative;
     top:30px;
-    left:220px;
+    left:320px;
   }
   input.info_form {
     width:230px;
     position: relative;
     top:30px;
     margin-left:180px;
-    left:220px;
+    left:290px;
   }
   .btn.btn-info {
     padding: 0.3rem 2rem;
     position: relative;
     margin-left:10px;
     top:30px;
-    left:230px;
+    left:290px;
   }
   #now .icon img {
     width: 30px;
@@ -221,6 +234,13 @@
  }
  .top-menu {
   margin-bottom:200px;
+ }
+ .btn.btn-success {
+  padding: 0.3rem 2rem;
+  position: relative;
+  margin-left:10px;
+  top:30px;
+  left:320px;
  }
 }
 
@@ -240,21 +260,21 @@
     margin-left:5px;
     position: relative;
     top:30px;
-    left:380px;
+    left:470px;
   }
   input.info_form {
     width:230px;
     position: relative;
     top:30px;
     margin-left:180px;
-    left:370px;
+    left:420px;
   }
   .btn.btn-info {
     padding: 0.3rem 2rem;
     position: relative;
     margin-left:10px;
     top:30px;
-    left:380px;
+    left:430px;
   }
   #now .icon img {
     width: 30px;
@@ -288,15 +308,22 @@
   position:relative;
   top:110px;
   left:850px;
- }
- .btn.btn-info.sale {
- position:relative;
-  top:110px;
-  left:850px;
-  text-align: center;
- }
- .top-menu {
-  margin-bottom:200px;
- }
+  }
+  .btn.btn-info.sale {
+  position:relative;
+   top:110px;
+   left:850px;
+   text-align: center;
+  }
+  .top-menu {
+   margin-bottom:200px;
+  }
+  .btn.btn-success {
+   padding: 0.3rem 2rem;
+   position: relative;
+   margin-left:10px;
+   top:30px;
+   left:470px;
+  }
 }
     

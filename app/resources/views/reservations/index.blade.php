@@ -12,7 +12,7 @@
       <input type="search" class="reservation_form" name="search"  placeholder="キーワードを入力" >
       <input type="date" class="reservation_form" name="date-search" placeholder="キーワードを入力">
     </div>
-    <input type="submit" value="検索" class="btn btn-info" dusk="search">
+    <input type="submit" value="検索" class="btn btn-success" dusk="search">
   </form>
     <table>
       <thead>
@@ -92,7 +92,7 @@ function ajaxRequest(lat, long) {
             <ul class="mt-4"style="display: inline-block; >
               <li>
                     <div class="info">
-                    ${month}/${date} ${hours}:${min}
+                    ${month}/${date} :${hours}:${min}
                     </div>
                     <div class="icon"><img src="${iconPath}"></div>
                     <div><span class="description">${description}</span></div>
