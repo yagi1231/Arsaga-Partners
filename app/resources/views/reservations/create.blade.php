@@ -163,7 +163,7 @@
           <option value="準備中">準備中</option>
           <option value="準備完了">準備完了</option>
           <option value="配達中">配達中</option>
-          <option value="配達完了">配達完了</option>
+          <option value="再配達">再配達</option>
         </select>
       </td>
    </tr>

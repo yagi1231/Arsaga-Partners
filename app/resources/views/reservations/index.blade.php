@@ -36,7 +36,13 @@
              <td>{{$reservation['delivery']}}</td>
              <form method='POST' action="{{ route('reservations/update', ['id' => $reservation['id'] ] ) }}">
              @csrf
-             <td>{{$reservation['task']}}</td>
+             <td>
+               @if($reservation->is_liked_by_auth_user())
+                 <a href="{{ route('reservation.upstatus', ['id' => $reservation->id]) }}">準備中</a>
+               @else
+                 <a href="{{ route('reservation.status', ['id' => $reservation->id]) }}">配達完了</a>
+               @endif
+             </td>
            </tr>
         @endforeach
       </tbody>
@@ -47,7 +53,7 @@
   {{ $reservations->links()}}
 </div>
 <script>
-    'use strict';
+'use strict';
 navigator.geolocation.getCurrentPosition(success, fail);
 
 function success(pos) {
