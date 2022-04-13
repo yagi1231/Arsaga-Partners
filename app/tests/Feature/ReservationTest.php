@@ -29,7 +29,7 @@ class ReservationTest extends TestCase
 
     public function test_一覧画面表示確認()
     {
-        $response = $this->get('/reservations/index');
+        $response = $this->get('reservations/index');
 
         $response->assertStatus(200);
         
@@ -146,7 +146,11 @@ class ReservationTest extends TestCase
         $data =  Reservation::where('id', $data->id)->update([
             'status' => '2'
         ]);
+
+        $response = $this->get('reservations/index');
+
+        $response->assertStatus(200);
         
-        $response->assertDontSeeText('reservations', ['address' => 'eee@gmail.com']);
+        $response->assertDontSeeText('reservations', ['name' => 'eee@gmail.com']);
     }
 }
