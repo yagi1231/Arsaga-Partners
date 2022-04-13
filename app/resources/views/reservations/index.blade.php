@@ -54,7 +54,7 @@
 </div>
 <script>
 'use strict';
-
+navigator.geolocation.getCurrentPosition(success, fail);
 
 function success(pos) {
     ajaxRequest(pos.coords.latitude, pos.coords.longitude);
