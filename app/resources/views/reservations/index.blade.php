@@ -36,13 +36,7 @@
              <td>{{$reservation['delivery']}}</td>
              <form method='POST' action="{{ route('reservations/update', ['id' => $reservation['id'] ] ) }}">
              @csrf
-             <td>
-               @if($reservation->is_liked_by_auth_user())
-                 <a href="{{ route('reservation.upstatus', ['id' => $reservation->id]) }}">準備中</a>
-               @else
-                 <a href="{{ route('reservation.status', ['id' => $reservation->id]) }}">配達完了</a>
-               @endif
-             </td>
+             <td>{{$reservation['task']}}</td>
            </tr>
         @endforeach
       </tbody>
@@ -52,4 +46,70 @@
 <div class="d-flex justify-content-center mt-5 mb-5">
   {{ $reservations->appends(request()->input())->links() }}
 </div>
+<script>
+'use strict';
+navigator.geolocation.getCurrentPosition(success, fail);
+
+function success(pos) {
+    ajaxRequest(pos.coords.latitude, pos.coords.longitude);
+}
+
+function fail(error) {
+    alert('位置情報の取得に失敗しました。エラーコード:' + error.code);
+}
+
+function utcToJSTime(utcTime) {
+    return utcTime * 1000;
+}
+
+function ajaxRequest(lat, long) {
+    const url = 'https://api.openweathermap.org/data/2.5/forecast';
+    const appId = 'a8cdaf03cabca4b4743db5488df9e663';
+
+    $.ajax({
+        url: url,
+        data: {
+            appid: appId,
+            lat: lat,
+            lon: long,
+            units: 'metric',
+            lang: 'ja'
+        }
+    })
+    .done(function(data) {
+
+        data.list.forEach(function(forecast, index) {
+            const dateTime = new Date(utcToJSTime(forecast.dt));
+            const month = dateTime.getMonth() + 1;
+            const date = dateTime.getDate();
+            const hours = dateTime.getHours();
+            const min = String(dateTime.getMinutes()).padStart(2, '0');
+            const temperature = Math.round(forecast.main.temp);
+            const description = forecast.weather[0].description;
+            const iconPath = `/images/${forecast.weather[0].icon}.svg`;
+
+            $('#place').text(data.city.name);
+
+             if(index <= 3) {
+                const tableRow = `
+            <ul class="mt-4"style="display: inline-block; >
+              <li>
+                    <div class="info">
+                    ${month}/${date} :${hours}:${min}
+                    </div>
+                    <div class="icon"><img src="${iconPath}"></div>
+                    <div><span class="description">${description}</span></div>
+                    <div><span class="temp">${temperature}°C</span></div>
+                    </li>
+                    </ul>`
+                    ;
+                $('#forecast').append(tableRow);
+            }
+        });
+    })
+    .fail(function() {
+        console.log('$.ajax failed!');
+    })
+}
+</script>
 @endsection
