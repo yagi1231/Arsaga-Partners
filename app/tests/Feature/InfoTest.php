@@ -107,7 +107,7 @@ class InfoTest extends TestCase
             'status' => '2'
         ]);
 
-        $response = $this->get('reservations/index');
+        $response = $this->get('infos/index');
 
         $response->assertStatus(200);
         
