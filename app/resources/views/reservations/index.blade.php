@@ -50,7 +50,7 @@
   </div>
 </div>
 <div class="d-flex justify-content-center mt-5 mb-5">
-  {{ $reservations->links()}}
+  {{ $reservations->appends(request()->input())->links() }}
 </div>
 <script>
 'use strict';

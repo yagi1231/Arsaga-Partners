@@ -40,6 +40,6 @@
   </table>
 </div>
 <div class="d-flex justify-content-center mt-5 mb-5">
-  {{ $infos->links()}}
+  {{ $infos->appends(request()->input())->links() }}
 </div>
 @endsection
