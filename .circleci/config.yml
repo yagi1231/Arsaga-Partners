@@ -18,7 +18,7 @@ jobs:
           command: sudo docker-php-ext-install pdo_mysql
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-{{ checksum "app/composer.json" }}
             - v1-dependencies-
       - run:
           name: Install PHP libraries
